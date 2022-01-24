@@ -2,63 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Product />
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
+    <Authors>WoodmanX</Authors>
+    <Copyright>2021</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="C1.C1Excel.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.C1Excel.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.C1Pdf.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.C1Pdf.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.C1Report.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.C1Report.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.C1Word.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.C1Word.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.C1Zip.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.C1Zip.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.BarCode.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.BarCode.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.Bitmap.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.Bitmap.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1Command.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1Command.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1Document.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1Document.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1DX.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1DX.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1FlexGrid.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1FlexGrid.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1Input.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1Input.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1List.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1List.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1Report.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1Report.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1SuperTooltip.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.C1SuperTooltip.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.FlexChart.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.FlexChart.4.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.ImportServices.4">
-      <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\C1.Win.ImportServices.4.dll</HintPath>
-    </Reference>
     <Reference Include="GCA5.Interfaces">
       <HintPath>..\..\..\..\Documents\Repo\GCA_CharacterSheet\Dependecies\GCA5.Interfaces.dll</HintPath>
     </Reference>
