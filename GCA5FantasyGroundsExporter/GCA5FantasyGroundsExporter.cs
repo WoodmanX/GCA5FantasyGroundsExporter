@@ -148,7 +148,10 @@ namespace GCA5FantasyGroundsExporter
                 fileWriter.Paragraph(index);
                 fileWriter.Paragraph("<name type = \"string\">" + skill.FullNameTL + "</name>");
                 fileWriter.Paragraph("<type type=\"string\""+ skill.SkillType + "</type>");
-                fileWriter.Paragraph("<level type=\"number\"" + skill.Level + "</type>");
+                fileWriter.Paragraph("<level type=\"number\"" + skill.Level + "</level>");
+                fileWriter.Paragraph("<relativelevel type=\"string\"" + skill.RelativeLevel + "</relativelevel>");
+                fileWriter.Paragraph("<points type=\"number\"" + skill.Points + "</points>");
+                fileWriter.Paragraph("<text type=\"string\"" + skill.Notes + "</text>");
                 fileWriter.Paragraph(index.Insert(1,"/"));
                 i++;
             }
