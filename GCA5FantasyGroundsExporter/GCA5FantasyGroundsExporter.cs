@@ -125,6 +125,7 @@ namespace GCA5FantasyGroundsExporter
 
             ExportAbilities(myCharacter, fileWriter);
             Exportattributes(myCharacter, fileWriter);
+            ExportEncumberance(myCharacter, fileWriter);
 
             fileWriter.Paragraph("</character>");
             fileWriter.Paragraph("</root>");
@@ -134,7 +135,7 @@ namespace GCA5FantasyGroundsExporter
         {
             fileWriter.Paragraph("<abilities>");
             ExportSkills(myCharacter, fileWriter);
-            exportSpells(myCharacter, fileWriter);
+            ExportSpells(myCharacter, fileWriter);
             fileWriter.Paragraph("</abilities>");
 
         }
@@ -162,7 +163,7 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</skilllist>");
         }
 
-        private void exportSpells(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportSpells(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var mySpells = myCharacter.ItemsByType[(int)TraitTypes.Spells];
             int i = 1;
@@ -214,11 +215,12 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph(escapedItem("dexterity", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(escapedItem("dexterity_points", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Points.ToString()));
             fileWriter.Paragraph(escapedItem("intelligence", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("strength_points", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("intelligence_points", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Points.ToString()));
             fileWriter.Paragraph(escapedItem("health", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(escapedItem("health_points", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Points.ToString()));
             fileWriter.Paragraph(escapedItem("hitpoints", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(escapedItem("hitpoints_points", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("hps", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(escapedItem("will", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(escapedItem("will_points", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Points.ToString()));
             fileWriter.Paragraph(escapedItem("perception", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Score.ToString()));
@@ -234,11 +236,64 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph(escapedItem("basicspeed_points", "number", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Points.ToString()));
 
             var myBasicMove = myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Score;
-            fileWriter.Paragraph(escapedItem("basicmove", "number", myBasicMove.ToString()));
+            fileWriter.Paragraph(escapedItem("basicmove", "string", myBasicMove.ToString()));
             fileWriter.Paragraph(escapedItem("basicmove_points", "number", myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("move", "number", myBasicMove.ToString()));
+            fileWriter.Paragraph(escapedItem("move", "string", myBasicMove.ToString()));
 
             fileWriter.Paragraph("</attributes>");
+        }
+
+        private void ExportEncumberance(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+
+
+            var curEnc = myCharacter.EncumbranceLevel;
+            var noEnc = myCharacter.ItemByNameAndExt("No Encumbrance", (int)TraitTypes.Stats).DisplayScore;
+            var ligEnc = myCharacter.ItemByNameAndExt("Light Encumbrance", (int)TraitTypes.Stats).DisplayScore;
+            var medEnc = myCharacter.ItemByNameAndExt("Medium Encumbrance", (int)TraitTypes.Stats).DisplayScore;
+            var heaEnc = myCharacter.ItemByNameAndExt("Heavy Encumbrance", (int)TraitTypes.Stats).DisplayScore;
+            var xheEnc = myCharacter.ItemByNameAndExt("X-Heavy Encumbrance", (int)TraitTypes.Stats).DisplayScore;
+
+            var noEncMov = myCharacter.ItemByNameAndExt("No Encumbrance Move", (int)TraitTypes.Stats).DisplayScore;
+            var ligEncMov = myCharacter.ItemByNameAndExt("Light Encumbrance Move", (int)TraitTypes.Stats).DisplayScore;
+            var medEncMov = myCharacter.ItemByNameAndExt("Medium Encumbrance Move", (int)TraitTypes.Stats).DisplayScore;
+            var heaEncMov = myCharacter.ItemByNameAndExt("Heavy Encumbrance Move", (int)TraitTypes.Stats).DisplayScore;
+            var xheEncMov = myCharacter.ItemByNameAndExt("X-Heavy Encumbrance Move", (int)TraitTypes.Stats).DisplayScore;
+
+            var noEncDodge = (int)myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score; 
+
+            int[] myEnc = {0,0,0,0,0};
+            myEnc[curEnc] = 1;
+
+            
+
+            fileWriter.Paragraph("<encumbrance>");
+
+            for(int i = 0; i < myEnc.Length; i++)
+            {
+                fileWriter.Paragraph(escapedItem("enc_"+i, "number", myEnc[i].ToString()));
+            }
+
+            fileWriter.Paragraph(escapedItem("enc0_weight", "string", noEnc.ToString()));
+            fileWriter.Paragraph(escapedItem("enc1_weight", "string", ligEnc.ToString()));
+            fileWriter.Paragraph(escapedItem("enc2_weight", "string", medEnc.ToString()));
+            fileWriter.Paragraph(escapedItem("enc3_weight", "string", heaEnc.ToString()));
+            fileWriter.Paragraph(escapedItem("enc4_weight", "string", xheEnc.ToString()));
+
+            fileWriter.Paragraph(escapedItem("enc0_move", "string", noEncMov.ToString()));
+            fileWriter.Paragraph(escapedItem("enc1_move", "string", ligEncMov.ToString()));
+            fileWriter.Paragraph(escapedItem("enc2_move", "string", medEncMov.ToString()));
+            fileWriter.Paragraph(escapedItem("enc3_move", "string", heaEncMov.ToString()));
+            fileWriter.Paragraph(escapedItem("enc4_move", "string", xheEncMov.ToString()));
+
+            fileWriter.Paragraph(escapedItem("enc0_dodge", "number", noEncDodge.ToString("D")));
+            fileWriter.Paragraph(escapedItem("enc1_dodge", "number", (noEncDodge - 1).ToString("D")));
+            fileWriter.Paragraph(escapedItem("enc2_dodge", "number", (noEncDodge - 2).ToString("D")));
+            fileWriter.Paragraph(escapedItem("enc3_dodge", "number", (noEncDodge - 3).ToString("D")));
+            fileWriter.Paragraph(escapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
+
+            fileWriter.Paragraph("</encumbrance>");
+
         }
 
         private string escapedItem(string tagName, string tagType, string item)
