@@ -23,8 +23,8 @@ namespace GCA5FantasyGroundsExporter
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
         private const string PLUGINVERSION = "1.0.0.3";
+        
         private SheetOptionsManager myOptions;
-        //private List<Skill> Skills;
 
         public string PluginName()
         {
