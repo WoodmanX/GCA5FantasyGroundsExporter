@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Security;
 
 //Everything from here and below is normal code and Imports and such, just as it is
 //when developing within Visual Studio for VB projects.
@@ -21,7 +22,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.0.0.1";
+        private const string PLUGINVERSION = "1.0.0.2";
         private SheetOptionsManager myOptions;
         //private List<Skill> Skills;
 
@@ -146,12 +147,12 @@ namespace GCA5FantasyGroundsExporter
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph("<name type = \"string\">" + skill.FullNameTL + "</name>");
-                fileWriter.Paragraph("<type type=\"string\""+ skill.SkillType + "</type>");
-                fileWriter.Paragraph("<level type=\"number\"" + skill.Level + "</level>");
-                fileWriter.Paragraph("<relativelevel type=\"string\"" + skill.RelativeLevel + "</relativelevel>");
-                fileWriter.Paragraph("<points type=\"number\"" + skill.Points + "</points>");
-                fileWriter.Paragraph("<text type=\"string\"" + skill.Notes + "</text>");
+                fileWriter.Paragraph(escapedItem("name", "string", skill.FullNameTL));
+                fileWriter.Paragraph(escapedItem("type", "string", skill.SkillType));
+                fileWriter.Paragraph(escapedItem("level", "number", skill.Level.ToString()));
+                fileWriter.Paragraph(escapedItem("relativelevel", "string", skill.RelativeLevel));
+                fileWriter.Paragraph(escapedItem("points", "number", skill.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", skill.Notes));
                 fileWriter.Paragraph(index.Insert(1,"/"));
                 i++;
             }
@@ -161,7 +162,50 @@ namespace GCA5FantasyGroundsExporter
 
         private void exportSpells(GCACharacter myCharacter, FileWriter fileWriter)
         {
+            var mySpells = myCharacter.ItemsByType[(int)TraitTypes.Spells];
+            int i = 1;
 
+            fileWriter.Paragraph("<spelllist>");
+            foreach (GCATrait spell in mySpells)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                var myClass = spell.get_TagItem("class");
+                var myResist = "";
+                var myCastingTime = spell.get_TagItem("time");
+
+
+                if (myClass.Contains("/"))
+                {
+                    var mySplit = myClass.Split('/');
+                    myClass = mySplit[0];
+                    myResist = mySplit[1];
+                }
+
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(escapedItem("name", "string", spell.FullNameTL));
+                fileWriter.Paragraph(escapedItem("level", "number", spell.Level.ToString()));
+                fileWriter.Paragraph(escapedItem("class", "string", myClass));
+                fileWriter.Paragraph(escapedItem("type", "string", spell.get_TagItem("type")));
+                fileWriter.Paragraph(escapedItem("points", "number", spell.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", spell.Notes));
+                fileWriter.Paragraph(escapedItem("time", "string", spell.get_TagItem("time")));
+                fileWriter.Paragraph(escapedItem("duration", "string", spell.get_TagItem("duration")));
+                fileWriter.Paragraph(escapedItem("costmaintain", "string", spell.get_TagItem("castingcost")));
+                fileWriter.Paragraph(escapedItem("resist", "string", myResist));
+                fileWriter.Paragraph(escapedItem("college", "string", spell.get_TagItem("cat")));
+                fileWriter.Paragraph(escapedItem("page", "string", spell.get_TagItem("page")));                  
+
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
+            fileWriter.Paragraph("</spelllist>");
+        }
+
+        private string escapedItem(string tagName, string tagType, string item)
+        {
+            return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
         }
 
     }
