@@ -22,7 +22,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.0.0.2";
+        private const string PLUGINVERSION = "1.0.0.3";
         private SheetOptionsManager myOptions;
         //private List<Skill> Skills;
 
@@ -123,21 +123,23 @@ namespace GCA5FantasyGroundsExporter
             //Name
             fileWriter.Paragraph("<name type=\"string\">" + myCharacter.Name + "</name>");
 
-            exportAbilities(myCharacter, fileWriter);
+            ExportAbilities(myCharacter, fileWriter);
+            Exportattributes(myCharacter, fileWriter);
 
             fileWriter.Paragraph("</character>");
             fileWriter.Paragraph("</root>");
         }
 
-        private void exportAbilities(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportAbilities(GCACharacter myCharacter, FileWriter fileWriter)
         {
             fileWriter.Paragraph("<abilities>");
-            exportSkills(myCharacter, fileWriter);
+            ExportSkills(myCharacter, fileWriter);
             exportSpells(myCharacter, fileWriter);
             fileWriter.Paragraph("</abilities>");
+
         }
 
-        private void exportSkills(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportSkills(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var mySkills = myCharacter.ItemsByType[(int)TraitTypes.Skills];
             int i = 1;
@@ -201,6 +203,42 @@ namespace GCA5FantasyGroundsExporter
             }
 
             fileWriter.Paragraph("</spelllist>");
+        }
+
+        private void Exportattributes(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            fileWriter.Paragraph("<attributes>");
+
+            fileWriter.Paragraph(escapedItem("strength", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("strength_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("dexterity", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("dexterity_points", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("intelligence", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("strength_points", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("health", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("health_points", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("hitpoints", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("hitpoints_points", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("will", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("will_points", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("perception", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("perception_points", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("fatiguepoints", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("fatiguepoints_points", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("fps", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
+            
+            fileWriter.Paragraph(escapedItem("basiclift", "number", myCharacter.ItemByNameAndExt("Basic Lift", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("thrust", "number", myCharacter.BaseTH));
+            fileWriter.Paragraph(escapedItem("swing", "number", myCharacter.BaseSW));
+            fileWriter.Paragraph(escapedItem("basicspeed", "number", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(escapedItem("basicspeed_points", "number", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Points.ToString()));
+
+            var myBasicMove = myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Score;
+            fileWriter.Paragraph(escapedItem("basicmove", "number", myBasicMove.ToString()));
+            fileWriter.Paragraph(escapedItem("basicmove_points", "number", myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(escapedItem("move", "number", myBasicMove.ToString()));
+
+            fileWriter.Paragraph("</attributes>");
         }
 
         private string escapedItem(string tagName, string tagType, string item)
