@@ -22,7 +22,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.0.0.3";
+        private const string PLUGINVERSION = "1.0.0.4";
         private SheetOptionsManager myOptions;
         //private List<Skill> Skills;
 
@@ -329,12 +329,76 @@ namespace GCA5FantasyGroundsExporter
             }
             fileWriter.Paragraph("</protectionlist>");
 
+            exportMeleeList(myCharacter, fileWriter);
+
+
             fileWriter.Paragraph("</combat>");
+        }
+
+        private void exportMeleeList(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var attackIndex = 1;
+
+            fileWriter.Paragraph("<meleecombatlist>");
+
+            foreach (GCATrait Item in myCharacter.Items)
+            {
+                if (Item.DamageModeTagItemCount("charreach") > 0)
+                {
+                    var ModeCount = Item.DamageModeTagItemCount("charreach");
+
+                    if (!isItemHidden(Item) && ModeCount > 0)
+                    {
+                        var curMode = 1;
+                        var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                        
+                        fileWriter.Paragraph(index);
+
+                        fileWriter.Paragraph(escapedItem("name", "string", Item.Name));
+                        fileWriter.Paragraph(escapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                        fileWriter.Paragraph(escapedItem("cost", "string", Item.get_TagItem("cost")));
+                        fileWriter.Paragraph(escapedItem("weight", "string", Item.get_TagItem("weight")));
+                        fileWriter.Paragraph(escapedItem("text", "string", Item.get_TagItem("description")));
+                        fileWriter.Paragraph(escapedItem("tl", "string", Item.get_TagItem("techlvl")));
+
+                        fileWriter.Paragraph("<meleemodelist>");
+
+                        do
+                        {
+                            
+                            var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                            fileWriter.Paragraph(indexMode);
+                            fileWriter.Paragraph(escapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                            fileWriter.Paragraph(escapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                            fileWriter.Paragraph(escapedItem("damage", "string", Item.DamageModeTagItem(curMode, "chardamage")));
+                            fileWriter.Paragraph(escapedItem("reach", "string", Item.DamageModeTagItem(curMode, "charreach")));
+                            fileWriter.Paragraph(escapedItem("parry", "string", Item.DamageModeTagItem(curMode, "parry")));
+                            fileWriter.Paragraph(indexMode.Insert(1, "/"));
+
+                            curMode = Item.DamageModeTagItemAt("charreach", curMode + 1);
+                        } while (curMode > 0);
+
+                        fileWriter.Paragraph("</meleemodelist>");
+                        fileWriter.Paragraph(index.Insert(1, "/"));
+                        attackIndex++;
+                    }
+
+
+                }
+            }
+
+            fileWriter.Paragraph("</meleecombatlist>");
         }
 
         private string escapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
+        }
+
+        private bool isItemHidden(GCATrait item)
+        {
+            return !(item.get_TagItem("hidden") == "");
         }
 
     }
