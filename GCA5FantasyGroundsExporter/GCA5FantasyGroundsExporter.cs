@@ -18,6 +18,9 @@ using GCA5.Interfaces;
 
 namespace GCA5FantasyGroundsExporter
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GCA5FantasyGroundsExporter : GCA5.Interfaces.IExportSheet
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
@@ -86,7 +89,13 @@ namespace GCA5FantasyGroundsExporter
             return true;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Party"></param>
+        /// <param name="TargetFilename"></param>
+        /// <param name="Options"></param>
+        /// <returns></returns>
         public bool GenerateExport(Party Party, string TargetFilename, SheetOptionsManager Options)
         {
             myOptions = Options;
@@ -114,7 +123,11 @@ namespace GCA5FantasyGroundsExporter
 
             return true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportPC(GCACharacter myCharacter, FileWriter fileWriter )
         {
             fileWriter.Paragraph("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -131,7 +144,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</character>");
             fileWriter.Paragraph("</root>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportAbilities(GCACharacter myCharacter, FileWriter fileWriter)
         {
             fileWriter.Paragraph("<abilities>");
@@ -140,7 +157,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</abilities>");
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportSkills(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var mySkills = myCharacter.ItemsByType[(int)TraitTypes.Skills];
@@ -163,7 +184,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</skilllist>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportSpells(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var mySpells = myCharacter.ItemsByType[(int)TraitTypes.Spells];
@@ -206,7 +231,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</spelllist>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void Exportattributes(GCACharacter myCharacter, FileWriter fileWriter)
         {
             fileWriter.Paragraph("<attributes>");
@@ -243,7 +272,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</attributes>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportEncumberance(GCACharacter myCharacter, FileWriter fileWriter)
         {
 
@@ -296,7 +329,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</encumbrance>");
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void ExportCombat(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var noEncDodge = (int)myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score;
@@ -334,7 +371,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</combat>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportMeleeList(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var attackIndex = 1;
@@ -391,6 +432,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</meleecombatlist>");
         }
 
+        /// <summary>
+        /// exports every ranged attackmode of the given cahracter
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportRangedList(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var attackIndex = 1;
@@ -441,7 +487,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</rangedcombatlist>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportTraits(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var x = myCharacter.ItemsByName("Size Modifier", (int)TraitTypes.Attributes);
@@ -475,7 +525,11 @@ namespace GCA5FantasyGroundsExporter
             exportReactionMods(myCharacter, fileWriter);
             fileWriter.Paragraph("</traits>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportAdvantages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
@@ -540,7 +594,11 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph("</adslist>");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportDisadvantages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
@@ -591,7 +649,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</disadslist>");
 
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportCuluralFamiliarty(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
@@ -609,7 +671,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</culturalfamiliaritylist>");
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportLanguages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
@@ -629,7 +695,11 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</languagelist>");
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
         private void exportReactionMods(GCACharacter myCharacter, FileWriter fileWriter)
         {
             GCATrait reaction = myCharacter.ItemByNameAndExt("Reaction", (int)TraitTypes.Attributes);
@@ -638,17 +708,33 @@ namespace GCA5FantasyGroundsExporter
 
             fileWriter.Paragraph(escapedItem("reactionmodifiers","string",reactionmods));
         }
-
+        /// <summary>
+        /// creates the xml tag with propper escaping of characters
+        /// </summary>
+        /// <param name="tagName"></param>
+        /// <param name="tagType"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private string escapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
         }
 
+        /// <summary>
+        /// utility function to check if a given item is hidden
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private bool isItemHidden(GCATrait item)
         {
             return !(item.get_TagItem("hidden") == "");
         }
-
+        /// <summary>
+        /// assembles the damage string
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         private string getDamageString(GCATrait item, int mode)
         {
             return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
