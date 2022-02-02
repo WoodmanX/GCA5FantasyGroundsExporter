@@ -460,17 +460,19 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph(escapedItem("appearance", "string", myCharacter.Appearance));
             fileWriter.Paragraph(escapedItem("sizemodifier", "string", sm));
             fileWriter.Paragraph(escapedItem("reach", "string", sm));
+            fileWriter.Paragraph(escapedItem("tl", "string", myCharacter.TL));
+            fileWriter.Paragraph(escapedItem("tl_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
 
             //Advantages
             exportAdvantages(myCharacter, fileWriter);
             //Disadvantages
-
+            exportDisadvantages(myCharacter, fileWriter);
             //Cultural familiarities
-
+            exportCuluralFamiliarty(myCharacter, fileWriter);
             //Languages
-
+            exportLanguages(myCharacter, fileWriter);
             //reactionmodifiers
-
+            exportReactionMods(myCharacter, fileWriter);
             fileWriter.Paragraph("</traits>");
         }
 
@@ -478,14 +480,33 @@ namespace GCA5FantasyGroundsExporter
         {
             var i = 1;
             var Ads = myCharacter.ItemsByType[(int)TraitTypes.Advantages];
+            var Templates = myCharacter.ItemsByType[(int)TraitTypes.Templates];
+            var Perks = myCharacter.ItemsByType[(int)TraitTypes.Perks];
+            var Features = myCharacter.ItemsByType[(int)TraitTypes.Features];
 
             fileWriter.Paragraph("<adslist>");
 
-            foreach(GCATrait Adv in Ads)
+            foreach (GCATrait Template in Templates)
+            {
+                if (Template.Points >= 0)
+                {
+                    var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                    fileWriter.Paragraph(index);
+                    fileWriter.Paragraph(escapedItem("name", "string", Template.DisplayName));
+                    fileWriter.Paragraph(escapedItem("points", "number", Template.Points.ToString()));
+                    fileWriter.Paragraph(escapedItem("text", "string", Template.Notes));
+                    fileWriter.Paragraph(escapedItem("page", "string", Template.get_TagItem("page")));
+                    fileWriter.Paragraph(index.Insert(1, "/"));
+                    i++;
+                }
+                
+            }
+
+            foreach (GCATrait Adv in Ads)
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", getAdvantageName(Adv)));
+                fileWriter.Paragraph(escapedItem("name", "string", Adv.DisplayName));
                 fileWriter.Paragraph(escapedItem("points", "number", Adv.Points.ToString()));
                 fileWriter.Paragraph(escapedItem("text", "string", Adv.Notes));
                 fileWriter.Paragraph(escapedItem("page", "string", Adv.get_TagItem("page")));
@@ -493,7 +514,129 @@ namespace GCA5FantasyGroundsExporter
                 i++;
             }
 
+            foreach (GCATrait Perk in Perks)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(escapedItem("name", "string", Perk.DisplayName));
+                fileWriter.Paragraph(escapedItem("points", "number", Perk.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", Perk.Notes));
+                fileWriter.Paragraph(escapedItem("page", "string", Perk.get_TagItem("page")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
+            foreach (GCATrait Feature in Features)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(escapedItem("name", "string", Feature.DisplayName));
+                fileWriter.Paragraph(escapedItem("points", "number", Feature.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", Feature.Notes));
+                fileWriter.Paragraph(escapedItem("page", "string", Feature.get_TagItem("page")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
             fileWriter.Paragraph("</adslist>");
+        }
+
+        private void exportDisadvantages(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var i = 1;
+            var Disads = myCharacter.ItemsByType[(int)TraitTypes.Disadvantages];
+            var Templates = myCharacter.ItemsByType[(int)TraitTypes.Templates];
+            var Quirks = myCharacter.ItemsByType[(int)TraitTypes.Quirks];
+
+            fileWriter.Paragraph("<disadslist>");
+
+            foreach (GCATrait Template in Templates)
+            {
+                if (Template.Points < 0)
+                {
+                    var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                    fileWriter.Paragraph(index);
+                    fileWriter.Paragraph(escapedItem("name", "string", Template.DisplayName));
+                    fileWriter.Paragraph(escapedItem("points", "number", Template.Points.ToString()));
+                    fileWriter.Paragraph(escapedItem("text", "string", Template.Notes));
+                    fileWriter.Paragraph(escapedItem("page", "string", Template.get_TagItem("page")));
+                    fileWriter.Paragraph(index.Insert(1, "/"));
+                    i++;
+                }
+
+            }
+
+            foreach (GCATrait Disad in Disads)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(escapedItem("name", "string", Disad.DisplayName));
+                fileWriter.Paragraph(escapedItem("points", "number", Disad.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", Disad.Notes));
+                fileWriter.Paragraph(escapedItem("page", "string", Disad.get_TagItem("page")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
+            foreach (GCATrait Quirk in Quirks)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(escapedItem("name", "string", Quirk.DisplayName));
+                fileWriter.Paragraph(escapedItem("points", "number", Quirk.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", Quirk.Notes));
+                fileWriter.Paragraph(escapedItem("page", "string", Quirk.get_TagItem("page")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
+            fileWriter.Paragraph("</disadslist>");
+
+        }
+        
+        private void exportCuluralFamiliarty(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var i = 1;
+            var Familirarities = myCharacter.ItemsByType[(int)TraitTypes.Cultures];
+
+            fileWriter.Paragraph("<culturalfamiliaritylist>");
+            foreach (GCATrait Familiarity in Familirarities)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(escapedItem("name", "string", Familiarity.DisplayName));
+                fileWriter.Paragraph(escapedItem("points", "number", Familiarity.Points.ToString()));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+            fileWriter.Paragraph("</culturalfamiliaritylist>");
+
+        }
+
+        private void exportLanguages(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var i = 1;
+            var Languages = myCharacter.ItemsByType[(int)TraitTypes.Languages];
+
+            fileWriter.Paragraph("<languagelist>");
+            foreach (GCATrait Language in Languages)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(escapedItem("name", "string", Language.DisplayName));
+                fileWriter.Paragraph(escapedItem("spoken", "string", Language.LevelName));
+                fileWriter.Paragraph(escapedItem("written", "string", Language.LevelName));
+                fileWriter.Paragraph(escapedItem("points", "number", Language.Points.ToString()));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+            fileWriter.Paragraph("</languagelist>");
+
+        }
+
+        private void exportReactionMods(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            GCATrait reaction = myCharacter.ItemByNameAndExt("Reaction", (int)TraitTypes.Attributes);
+            string reactionmods = reaction.get_TagItem("bonuslist");
+            reactionmods = reactionmods + ", " + reaction.get_TagItem("conditionallist");
+
+            fileWriter.Paragraph(escapedItem("reactionmodifiers","string",reactionmods));
         }
 
         private string escapedItem(string tagName, string tagType, string item)
@@ -514,26 +657,29 @@ namespace GCA5FantasyGroundsExporter
         private string getAdvantageName(GCATrait item)
         {
             var returnValue = "";
-            if(item.TraitType == TraitTypes.Advantages)
+            returnValue = item.Name;
+
+            if(item.NameExt.Length > 0)
             {
-
-                returnValue = item.Name;
-
-                if(item.NameExt.Length > 0)
-                {
-                    returnValue = returnValue + " " + item.NameExt;
-                }
+                returnValue = returnValue + " " + item.NameExt;
+            }
                 
-                if (item.Level > 0)
-                {
-                    returnValue = returnValue + " (" + item.Level.ToString() + ")"; 
-                }
-            }
-            else
+            if (item.Level > 0)
             {
-                returnValue = "not an advatage";
-            }
+                var levelnames = item.LevelName.Split(',');
 
+                if (levelnames.Length > 0)
+                {
+                    returnValue = returnValue + " (" + levelnames[item.Level] + ")";
+                }
+                else
+                {
+                    returnValue = returnValue + " (" + item.Level.ToString() + ")";
+                }
+
+                item.get_TagItem("initmods");
+            }
+            
             return returnValue;
         }
     }
