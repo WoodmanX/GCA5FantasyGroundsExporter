@@ -22,7 +22,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.0.0.4";
+        private const string PLUGINVERSION = "1.0.0.5";
         private SheetOptionsManager myOptions;
         //private List<Skill> Skills;
 
@@ -330,7 +330,7 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</protectionlist>");
 
             exportMeleeList(myCharacter, fileWriter);
-
+            exportRangedList(myCharacter, fileWriter);
 
             fileWriter.Paragraph("</combat>");
         }
@@ -371,7 +371,7 @@ namespace GCA5FantasyGroundsExporter
                             fileWriter.Paragraph(indexMode);
                             fileWriter.Paragraph(escapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
                             fileWriter.Paragraph(escapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
-                            fileWriter.Paragraph(escapedItem("damage", "string", Item.DamageModeTagItem(curMode, "chardamage")));
+                            fileWriter.Paragraph(escapedItem("damage", "string", getDamageString(Item, curMode)));
                             fileWriter.Paragraph(escapedItem("reach", "string", Item.DamageModeTagItem(curMode, "charreach")));
                             fileWriter.Paragraph(escapedItem("parry", "string", Item.DamageModeTagItem(curMode, "parry")));
                             fileWriter.Paragraph(indexMode.Insert(1, "/"));
@@ -391,6 +391,57 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</meleecombatlist>");
         }
 
+        private void exportRangedList(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var attackIndex = 1;
+
+            fileWriter.Paragraph("<rangedcombatlist>");
+
+            foreach (GCATrait Item in myCharacter.Items)
+            {
+                var ModeCount = Item.DamageModeTagItemCount("charrangemax");
+
+                if (!isItemHidden(Item) && ModeCount > 0)
+                {
+                    var curMode = 1;
+                    var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                    
+                    fileWriter.Paragraph(index);
+                    fileWriter.Paragraph(escapedItem("name", "string", Item.Name));
+                    fileWriter.Paragraph(escapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                    fileWriter.Paragraph(escapedItem("bulk", "number", Item.DamageModeTagItem(curMode, "bulk")));
+                    fileWriter.Paragraph(escapedItem("lc", "string", Item.DamageModeTagItem(curMode, "lc")));
+                    fileWriter.Paragraph(escapedItem("text", "string", Item.get_TagItem("description")));
+                    fileWriter.Paragraph(escapedItem("tl", "string", Item.get_TagItem("techlvl")));
+
+                    fileWriter.Paragraph("<rangedmodelist>");
+                    do
+                    {
+                        var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                        fileWriter.Paragraph(indexMode);
+                        fileWriter.Paragraph(escapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                        fileWriter.Paragraph(escapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                        fileWriter.Paragraph(escapedItem("damage", "string", getDamageString(Item, curMode)));
+                        fileWriter.Paragraph(escapedItem("acc", "number", Item.DamageModeTagItem(curMode, "acc")));
+                        var range = Item.DamageModeTagItem(curMode, "charrangehalfdam") + "/" + Item.DamageModeTagItem(curMode, "charrangemax");
+                        fileWriter.Paragraph(escapedItem("range", "string", range));
+                        fileWriter.Paragraph(escapedItem("rof", "string", Item.DamageModeTagItem(curMode, "rof")));
+                        fileWriter.Paragraph(escapedItem("shots", "string", Item.DamageModeTagItem(curMode, "shots")));
+                        fileWriter.Paragraph(escapedItem("rcl", "number", Item.DamageModeTagItem(curMode, "rcl")));
+                        fileWriter.Paragraph(indexMode.Insert(1, "/"));
+
+                        curMode = Item.DamageModeTagItemAt("charrangemax", curMode + 1);
+                    } while (curMode > 0);
+                    fileWriter.Paragraph("</rangedmodelist>");
+                    fileWriter.Paragraph(index.Insert(1, "/"));
+                    attackIndex++;
+                }
+            }
+
+            fileWriter.Paragraph("</rangedcombatlist>");
+        }
+
         private string escapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
@@ -401,6 +452,10 @@ namespace GCA5FantasyGroundsExporter
             return !(item.get_TagItem("hidden") == "");
         }
 
+        private string getDamageString(GCATrait item, int mode)
+        {
+            return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+        }
     }
 
 }
