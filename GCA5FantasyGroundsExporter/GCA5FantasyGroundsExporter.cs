@@ -121,13 +121,13 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("<root release=\"4 | CoreRPG:3\" version=\"3.2\">");
             fileWriter.Paragraph("<character>");
             //Name
-            fileWriter.Paragraph("<name type=\"string\">" + myCharacter.Name + "</name>");
+            fileWriter.Paragraph( escapedItem("name", "string", myCharacter.Name));
 
             ExportAbilities(myCharacter, fileWriter);
             Exportattributes(myCharacter, fileWriter);
             ExportEncumberance(myCharacter, fileWriter);
             ExportCombat(myCharacter, fileWriter);
-
+            exportTraits(myCharacter, fileWriter);
             fileWriter.Paragraph("</character>");
             fileWriter.Paragraph("</root>");
         }
@@ -442,6 +442,60 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("</rangedcombatlist>");
         }
 
+        private void exportTraits(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var x = myCharacter.ItemsByName("Size Modifier", (int)TraitTypes.Attributes);
+            var sm = "0";
+            if(x.Count > 0)
+            {
+                GCATrait gCATrait = (GCATrait)x[1];
+                sm = gCATrait.Score.ToString();
+            }
+
+            fileWriter.Paragraph("<traits>");
+            fileWriter.Paragraph(escapedItem("race", "string", myCharacter.Race));
+            fileWriter.Paragraph(escapedItem("height", "string", myCharacter.Height));
+            fileWriter.Paragraph(escapedItem("weight", "string", myCharacter.Weight));
+            fileWriter.Paragraph(escapedItem("age", "string", myCharacter.Age));
+            fileWriter.Paragraph(escapedItem("appearance", "string", myCharacter.Appearance));
+            fileWriter.Paragraph(escapedItem("sizemodifier", "string", sm));
+            fileWriter.Paragraph(escapedItem("reach", "string", sm));
+
+            //Advantages
+            exportAdvantages(myCharacter, fileWriter);
+            //Disadvantages
+
+            //Cultural familiarities
+
+            //Languages
+
+            //reactionmodifiers
+
+            fileWriter.Paragraph("</traits>");
+        }
+
+        private void exportAdvantages(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var i = 1;
+            var Ads = myCharacter.ItemsByType[(int)TraitTypes.Advantages];
+
+            fileWriter.Paragraph("<adslist>");
+
+            foreach(GCATrait Adv in Ads)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(escapedItem("name", "string", getAdvantageName(Adv)));
+                fileWriter.Paragraph(escapedItem("points", "number", Adv.Points.ToString()));
+                fileWriter.Paragraph(escapedItem("text", "string", Adv.Notes));
+                fileWriter.Paragraph(escapedItem("page", "string", Adv.get_TagItem("page")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+
+            fileWriter.Paragraph("</adslist>");
+        }
+
         private string escapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
@@ -455,6 +509,32 @@ namespace GCA5FantasyGroundsExporter
         private string getDamageString(GCATrait item, int mode)
         {
             return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+        }
+
+        private string getAdvantageName(GCATrait item)
+        {
+            var returnValue = "";
+            if(item.TraitType == TraitTypes.Advantages)
+            {
+
+                returnValue = item.Name;
+
+                if(item.NameExt.Length > 0)
+                {
+                    returnValue = returnValue + " " + item.NameExt;
+                }
+                
+                if (item.Level > 0)
+                {
+                    returnValue = returnValue + " (" + item.Level.ToString() + ")"; 
+                }
+            }
+            else
+            {
+                returnValue = "not an advatage";
+            }
+
+            return returnValue;
         }
     }
 
