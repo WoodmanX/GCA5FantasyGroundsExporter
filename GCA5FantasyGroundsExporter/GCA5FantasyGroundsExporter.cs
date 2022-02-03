@@ -25,9 +25,8 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.0.0.5";
+        private const string PLUGINVERSION = "1.1.0.0";
         private SheetOptionsManager myOptions;
-        //private List<Skill> Skills;
 
         public string PluginName()
         {
@@ -134,13 +133,15 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph("<root release=\"4 | CoreRPG:3\" version=\"3.2\">");
             fileWriter.Paragraph("<character>");
             //Name
-            fileWriter.Paragraph( escapedItem("name", "string", myCharacter.Name));
+            fileWriter.Paragraph( EscapedItem("name", "string", myCharacter.Name));
 
             ExportAbilities(myCharacter, fileWriter);
             Exportattributes(myCharacter, fileWriter);
             ExportEncumberance(myCharacter, fileWriter);
             ExportCombat(myCharacter, fileWriter);
-            exportTraits(myCharacter, fileWriter);
+            ExportTraits(myCharacter, fileWriter);
+            ExportInventory(myCharacter, fileWriter);
+            ExportPointTotals(myCharacter, fileWriter);
             fileWriter.Paragraph("</character>");
             fileWriter.Paragraph("</root>");
         }
@@ -172,12 +173,12 @@ namespace GCA5FantasyGroundsExporter
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", skill.FullNameTL));
-                fileWriter.Paragraph(escapedItem("type", "string", skill.SkillType));
-                fileWriter.Paragraph(escapedItem("level", "number", skill.Level.ToString()));
-                fileWriter.Paragraph(escapedItem("relativelevel", "string", skill.RelativeLevel));
-                fileWriter.Paragraph(escapedItem("points", "number", skill.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", skill.Notes));
+                fileWriter.Paragraph(EscapedItem("name", "string", skill.FullNameTL));
+                fileWriter.Paragraph(EscapedItem("type", "string", skill.SkillType));
+                fileWriter.Paragraph(EscapedItem("level", "number", skill.Level.ToString()));
+                fileWriter.Paragraph(EscapedItem("relativelevel", "string", skill.RelativeLevel));
+                fileWriter.Paragraph(EscapedItem("points", "number", skill.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", skill.Notes));
                 fileWriter.Paragraph(index.Insert(1,"/"));
                 i++;
             }
@@ -212,18 +213,18 @@ namespace GCA5FantasyGroundsExporter
                 }
 
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", spell.FullNameTL));
-                fileWriter.Paragraph(escapedItem("level", "number", spell.Level.ToString()));
-                fileWriter.Paragraph(escapedItem("class", "string", myClass));
-                fileWriter.Paragraph(escapedItem("type", "string", spell.get_TagItem("type")));
-                fileWriter.Paragraph(escapedItem("points", "number", spell.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", spell.Notes));
-                fileWriter.Paragraph(escapedItem("time", "string", spell.get_TagItem("time")));
-                fileWriter.Paragraph(escapedItem("duration", "string", spell.get_TagItem("duration")));
-                fileWriter.Paragraph(escapedItem("costmaintain", "string", spell.get_TagItem("castingcost")));
-                fileWriter.Paragraph(escapedItem("resist", "string", myResist));
-                fileWriter.Paragraph(escapedItem("college", "string", spell.get_TagItem("cat")));
-                fileWriter.Paragraph(escapedItem("page", "string", spell.get_TagItem("page")));                  
+                fileWriter.Paragraph(EscapedItem("name", "string", spell.FullNameTL));
+                fileWriter.Paragraph(EscapedItem("level", "number", spell.Level.ToString()));
+                fileWriter.Paragraph(EscapedItem("class", "string", myClass));
+                fileWriter.Paragraph(EscapedItem("type", "string", spell.get_TagItem("type")));
+                fileWriter.Paragraph(EscapedItem("points", "number", spell.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", spell.Notes));
+                fileWriter.Paragraph(EscapedItem("time", "string", spell.get_TagItem("time")));
+                fileWriter.Paragraph(EscapedItem("duration", "string", spell.get_TagItem("duration")));
+                fileWriter.Paragraph(EscapedItem("costmaintain", "string", spell.get_TagItem("castingcost")));
+                fileWriter.Paragraph(EscapedItem("resist", "string", myResist));
+                fileWriter.Paragraph(EscapedItem("college", "string", spell.get_TagItem("cat")));
+                fileWriter.Paragraph(EscapedItem("page", "string", spell.get_TagItem("page")));                  
 
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
@@ -240,35 +241,35 @@ namespace GCA5FantasyGroundsExporter
         {
             fileWriter.Paragraph("<attributes>");
 
-            fileWriter.Paragraph(escapedItem("strength", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("strength_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("dexterity", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("dexterity_points", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("intelligence", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("intelligence_points", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("health", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("health_points", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("hitpoints", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("hitpoints_points", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("hps", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("will", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("will_points", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("perception", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("perception_points", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("fatiguepoints", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("fatiguepoints_points", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("fps", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("strength", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("strength_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("dexterity", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("dexterity_points", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("intelligence", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("intelligence_points", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("health", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("health_points", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("hitpoints", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("hitpoints_points", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("hps", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("will", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("will_points", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("perception", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("perception_points", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("fatiguepoints", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("fatiguepoints_points", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("fps", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
             
-            fileWriter.Paragraph(escapedItem("basiclift", "string", myCharacter.ItemByNameAndExt("Basic Lift", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("thrust", "string", myCharacter.BaseTH));
-            fileWriter.Paragraph(escapedItem("swing", "string", myCharacter.BaseSW));
-            fileWriter.Paragraph(escapedItem("basicspeed", "string", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("basicspeed_points", "number", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("basiclift", "string", myCharacter.ItemByNameAndExt("Basic Lift", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("thrust", "string", myCharacter.BaseTH));
+            fileWriter.Paragraph(EscapedItem("swing", "string", myCharacter.BaseSW));
+            fileWriter.Paragraph(EscapedItem("basicspeed", "string", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("basicspeed_points", "number", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Points.ToString()));
 
             var myBasicMove = myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Score;
-            fileWriter.Paragraph(escapedItem("basicmove", "string", myBasicMove.ToString()));
-            fileWriter.Paragraph(escapedItem("basicmove_points", "number", myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Points.ToString()));
-            fileWriter.Paragraph(escapedItem("move", "string", myBasicMove.ToString()));
+            fileWriter.Paragraph(EscapedItem("basicmove", "string", myBasicMove.ToString()));
+            fileWriter.Paragraph(EscapedItem("basicmove_points", "number", myCharacter.ItemByNameAndExt("Basic Move", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("move", "string", myBasicMove.ToString()));
 
             fileWriter.Paragraph("</attributes>");
         }
@@ -305,26 +306,26 @@ namespace GCA5FantasyGroundsExporter
 
             for(int i = 0; i < myEnc.Length; i++)
             {
-                fileWriter.Paragraph(escapedItem("enc_"+i, "number", myEnc[i].ToString()));
+                fileWriter.Paragraph(EscapedItem("enc_"+i, "number", myEnc[i].ToString()));
             }
 
-            fileWriter.Paragraph(escapedItem("enc0_weight", "string", noEnc.ToString()));
-            fileWriter.Paragraph(escapedItem("enc1_weight", "string", ligEnc.ToString()));
-            fileWriter.Paragraph(escapedItem("enc2_weight", "string", medEnc.ToString()));
-            fileWriter.Paragraph(escapedItem("enc3_weight", "string", heaEnc.ToString()));
-            fileWriter.Paragraph(escapedItem("enc4_weight", "string", xheEnc.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc0_weight", "string", noEnc.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc1_weight", "string", ligEnc.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc2_weight", "string", medEnc.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc3_weight", "string", heaEnc.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc4_weight", "string", xheEnc.ToString()));
 
-            fileWriter.Paragraph(escapedItem("enc0_move", "string", noEncMov.ToString()));
-            fileWriter.Paragraph(escapedItem("enc1_move", "string", ligEncMov.ToString()));
-            fileWriter.Paragraph(escapedItem("enc2_move", "string", medEncMov.ToString()));
-            fileWriter.Paragraph(escapedItem("enc3_move", "string", heaEncMov.ToString()));
-            fileWriter.Paragraph(escapedItem("enc4_move", "string", xheEncMov.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc0_move", "string", noEncMov.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc1_move", "string", ligEncMov.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc2_move", "string", medEncMov.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc3_move", "string", heaEncMov.ToString()));
+            fileWriter.Paragraph(EscapedItem("enc4_move", "string", xheEncMov.ToString()));
 
-            fileWriter.Paragraph(escapedItem("enc0_dodge", "number", noEncDodge.ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc1_dodge", "number", (noEncDodge - 1).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc2_dodge", "number", (noEncDodge - 2).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc3_dodge", "number", (noEncDodge - 3).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc0_dodge", "number", noEncDodge.ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc1_dodge", "number", (noEncDodge - 1).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc2_dodge", "number", (noEncDodge - 2).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc3_dodge", "number", (noEncDodge - 3).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
 
             fileWriter.Paragraph("</encumbrance>");
 
@@ -339,16 +340,16 @@ namespace GCA5FantasyGroundsExporter
             var noEncDodge = (int)myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score;
 
             fileWriter.Paragraph("<combat>");
-            fileWriter.Paragraph(escapedItem("enc0_dodge", "number", noEncDodge.ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc1_dodge", "number", (noEncDodge - 1).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc2_dodge", "number", (noEncDodge - 2).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc3_dodge", "number", (noEncDodge - 3).ToString("D")));
-            fileWriter.Paragraph(escapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc0_dodge", "number", noEncDodge.ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc1_dodge", "number", (noEncDodge - 1).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc2_dodge", "number", (noEncDodge - 2).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc3_dodge", "number", (noEncDodge - 3).ToString("D")));
+            fileWriter.Paragraph(EscapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
 
-            fileWriter.Paragraph(escapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("block", "number", myCharacter.ItemByNameAndExt("Block", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(escapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.ItemByNameAndExt("Block", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
 
             fileWriter.Paragraph("<protectionlist>");
 
@@ -359,15 +360,15 @@ namespace GCA5FantasyGroundsExporter
                 BodyItem myBodyItem = myCharacter.Body.Item(myBodyItemName);
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("location", "string", myBodyItem.Name));
-                fileWriter.Paragraph(escapedItem("dr", "string", myBodyItem.DR));
+                fileWriter.Paragraph(EscapedItem("location", "string", myBodyItem.Name));
+                fileWriter.Paragraph(EscapedItem("dr", "string", myBodyItem.DR));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
             fileWriter.Paragraph("</protectionlist>");
 
-            exportMeleeList(myCharacter, fileWriter);
-            exportRangedList(myCharacter, fileWriter);
+            ExportMeleeList(myCharacter, fileWriter);
+            ExportRangedList(myCharacter, fileWriter);
 
             fileWriter.Paragraph("</combat>");
         }
@@ -376,7 +377,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportMeleeList(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportMeleeList(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var attackIndex = 1;
 
@@ -388,19 +389,19 @@ namespace GCA5FantasyGroundsExporter
                 {
                     var ModeCount = Item.DamageModeTagItemCount("charreach");
 
-                    if (!isItemHidden(Item) && ModeCount > 0)
+                    if (!IsItemHidden(Item) && ModeCount > 0)
                     {
                         var curMode = 1;
                         var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                         
                         fileWriter.Paragraph(index);
 
-                        fileWriter.Paragraph(escapedItem("name", "string", Item.Name));
-                        fileWriter.Paragraph(escapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
-                        fileWriter.Paragraph(escapedItem("cost", "string", Item.get_TagItem("cost")));
-                        fileWriter.Paragraph(escapedItem("weight", "string", Item.get_TagItem("weight")));
-                        fileWriter.Paragraph(escapedItem("text", "string", Item.get_TagItem("description")));
-                        fileWriter.Paragraph(escapedItem("tl", "string", Item.get_TagItem("techlvl")));
+                        fileWriter.Paragraph(EscapedItem("name", "string", Item.Name));
+                        fileWriter.Paragraph(EscapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                        fileWriter.Paragraph(EscapedItem("cost", "string", Item.get_TagItem("cost")));
+                        fileWriter.Paragraph(EscapedItem("weight", "string", Item.get_TagItem("weight")));
+                        fileWriter.Paragraph(EscapedItem("text", "string", Item.get_TagItem("description")));
+                        fileWriter.Paragraph(EscapedItem("tl", "string", Item.get_TagItem("techlvl")));
 
                         fileWriter.Paragraph("<meleemodelist>");
 
@@ -410,11 +411,11 @@ namespace GCA5FantasyGroundsExporter
                             var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
 
                             fileWriter.Paragraph(indexMode);
-                            fileWriter.Paragraph(escapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
-                            fileWriter.Paragraph(escapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
-                            fileWriter.Paragraph(escapedItem("damage", "string", getDamageString(Item, curMode)));
-                            fileWriter.Paragraph(escapedItem("reach", "string", Item.DamageModeTagItem(curMode, "charreach")));
-                            fileWriter.Paragraph(escapedItem("parry", "string", Item.DamageModeTagItem(curMode, "parry")));
+                            fileWriter.Paragraph(EscapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                            fileWriter.Paragraph(EscapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                            fileWriter.Paragraph(EscapedItem("damage", "string", GetDamageString(Item, curMode)));
+                            fileWriter.Paragraph(EscapedItem("reach", "string", Item.DamageModeTagItem(curMode, "charreach")));
+                            fileWriter.Paragraph(EscapedItem("parry", "string", Item.DamageModeTagItem(curMode, "parry")));
                             fileWriter.Paragraph(indexMode.Insert(1, "/"));
 
                             curMode = Item.DamageModeTagItemAt("charreach", curMode + 1);
@@ -437,28 +438,30 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportRangedList(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportRangedList(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var attackIndex = 1;
 
             fileWriter.Paragraph("<rangedcombatlist>");
 
+            //As a lot of things can give you a ranged attack we have to iterate over all items
             foreach (GCATrait Item in myCharacter.Items)
             {
+                //Every ranged attack has at least one entry with a range
                 var ModeCount = Item.DamageModeTagItemCount("charrangemax");
 
-                if (!isItemHidden(Item) && ModeCount > 0)
+                if (!IsItemHidden(Item) && ModeCount > 0)
                 {
                     var curMode = 1;
                     var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                     
                     fileWriter.Paragraph(index);
-                    fileWriter.Paragraph(escapedItem("name", "string", Item.Name));
-                    fileWriter.Paragraph(escapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
-                    fileWriter.Paragraph(escapedItem("bulk", "number", Item.DamageModeTagItem(curMode, "bulk")));
-                    fileWriter.Paragraph(escapedItem("lc", "string", Item.DamageModeTagItem(curMode, "lc")));
-                    fileWriter.Paragraph(escapedItem("text", "string", Item.get_TagItem("description")));
-                    fileWriter.Paragraph(escapedItem("tl", "string", Item.get_TagItem("techlvl")));
+                    fileWriter.Paragraph(EscapedItem("name", "string", Item.Name));
+                    fileWriter.Paragraph(EscapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                    fileWriter.Paragraph(EscapedItem("bulk", "number", Item.DamageModeTagItem(curMode, "bulk")));
+                    fileWriter.Paragraph(EscapedItem("lc", "string", Item.DamageModeTagItem(curMode, "lc")));
+                    fileWriter.Paragraph(EscapedItem("text", "string", Item.get_TagItem("description")));
+                    fileWriter.Paragraph(EscapedItem("tl", "string", Item.get_TagItem("techlvl")));
 
                     fileWriter.Paragraph("<rangedmodelist>");
                     do
@@ -466,15 +469,15 @@ namespace GCA5FantasyGroundsExporter
                         var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
 
                         fileWriter.Paragraph(indexMode);
-                        fileWriter.Paragraph(escapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
-                        fileWriter.Paragraph(escapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
-                        fileWriter.Paragraph(escapedItem("damage", "string", getDamageString(Item, curMode)));
-                        fileWriter.Paragraph(escapedItem("acc", "number", Item.DamageModeTagItem(curMode, "acc")));
+                        fileWriter.Paragraph(EscapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                        fileWriter.Paragraph(EscapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                        fileWriter.Paragraph(EscapedItem("damage", "string", GetDamageString(Item, curMode)));
+                        fileWriter.Paragraph(EscapedItem("acc", "number", Item.DamageModeTagItem(curMode, "acc")));
                         var range = Item.DamageModeTagItem(curMode, "charrangehalfdam") + "/" + Item.DamageModeTagItem(curMode, "charrangemax");
-                        fileWriter.Paragraph(escapedItem("range", "string", range));
-                        fileWriter.Paragraph(escapedItem("rof", "string", Item.DamageModeTagItem(curMode, "rof")));
-                        fileWriter.Paragraph(escapedItem("shots", "string", Item.DamageModeTagItem(curMode, "shots")));
-                        fileWriter.Paragraph(escapedItem("rcl", "number", Item.DamageModeTagItem(curMode, "rcl")));
+                        fileWriter.Paragraph(EscapedItem("range", "string", range));
+                        fileWriter.Paragraph(EscapedItem("rof", "string", Item.DamageModeTagItem(curMode, "rof")));
+                        fileWriter.Paragraph(EscapedItem("shots", "string", Item.DamageModeTagItem(curMode, "shots")));
+                        fileWriter.Paragraph(EscapedItem("rcl", "number", Item.DamageModeTagItem(curMode, "rcl")));
                         fileWriter.Paragraph(indexMode.Insert(1, "/"));
 
                         curMode = Item.DamageModeTagItemAt("charrangemax", curMode + 1);
@@ -492,7 +495,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportTraits(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportTraits(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var x = myCharacter.ItemsByName("Size Modifier", (int)TraitTypes.Attributes);
             var sm = "0";
@@ -503,26 +506,26 @@ namespace GCA5FantasyGroundsExporter
             }
 
             fileWriter.Paragraph("<traits>");
-            fileWriter.Paragraph(escapedItem("race", "string", myCharacter.Race));
-            fileWriter.Paragraph(escapedItem("height", "string", myCharacter.Height));
-            fileWriter.Paragraph(escapedItem("weight", "string", myCharacter.Weight));
-            fileWriter.Paragraph(escapedItem("age", "string", myCharacter.Age));
-            fileWriter.Paragraph(escapedItem("appearance", "string", myCharacter.Appearance));
-            fileWriter.Paragraph(escapedItem("sizemodifier", "string", sm));
-            fileWriter.Paragraph(escapedItem("reach", "string", sm));
-            fileWriter.Paragraph(escapedItem("tl", "string", myCharacter.TL));
-            fileWriter.Paragraph(escapedItem("tl_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("race", "string", myCharacter.Race));
+            fileWriter.Paragraph(EscapedItem("height", "string", myCharacter.Height));
+            fileWriter.Paragraph(EscapedItem("weight", "string", myCharacter.Weight));
+            fileWriter.Paragraph(EscapedItem("age", "string", myCharacter.Age));
+            fileWriter.Paragraph(EscapedItem("appearance", "string", myCharacter.Appearance));
+            fileWriter.Paragraph(EscapedItem("sizemodifier", "string", sm));
+            fileWriter.Paragraph(EscapedItem("reach", "string", sm));
+            fileWriter.Paragraph(EscapedItem("tl", "string", myCharacter.TL));
+            fileWriter.Paragraph(EscapedItem("tl_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
 
             //Advantages
-            exportAdvantages(myCharacter, fileWriter);
+            ExportAdvantages(myCharacter, fileWriter);
             //Disadvantages
-            exportDisadvantages(myCharacter, fileWriter);
+            ExportDisadvantages(myCharacter, fileWriter);
             //Cultural familiarities
-            exportCuluralFamiliarty(myCharacter, fileWriter);
+            ExportCuluralFamiliarty(myCharacter, fileWriter);
             //Languages
-            exportLanguages(myCharacter, fileWriter);
+            ExportLanguages(myCharacter, fileWriter);
             //reactionmodifiers
-            exportReactionMods(myCharacter, fileWriter);
+            ExportReactionMods(myCharacter, fileWriter);
             fileWriter.Paragraph("</traits>");
         }
         /// <summary>
@@ -530,7 +533,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportAdvantages(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportAdvantages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
             var Ads = myCharacter.ItemsByType[(int)TraitTypes.Advantages];
@@ -546,10 +549,10 @@ namespace GCA5FantasyGroundsExporter
                 {
                     var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                     fileWriter.Paragraph(index);
-                    fileWriter.Paragraph(escapedItem("name", "string", Template.DisplayName));
-                    fileWriter.Paragraph(escapedItem("points", "number", Template.Points.ToString()));
-                    fileWriter.Paragraph(escapedItem("text", "string", Template.Notes));
-                    fileWriter.Paragraph(escapedItem("page", "string", Template.get_TagItem("page")));
+                    fileWriter.Paragraph(EscapedItem("name", "string", Template.DisplayName));
+                    fileWriter.Paragraph(EscapedItem("points", "number", Template.Points.ToString()));
+                    fileWriter.Paragraph(EscapedItem("text", "string", Template.Notes));
+                    fileWriter.Paragraph(EscapedItem("page", "string", Template.get_TagItem("page")));
                     fileWriter.Paragraph(index.Insert(1, "/"));
                     i++;
                 }
@@ -560,10 +563,10 @@ namespace GCA5FantasyGroundsExporter
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", Adv.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Adv.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", Adv.Notes));
-                fileWriter.Paragraph(escapedItem("page", "string", Adv.get_TagItem("page")));
+                fileWriter.Paragraph(EscapedItem("name", "string", Adv.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Adv.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", Adv.Notes));
+                fileWriter.Paragraph(EscapedItem("page", "string", Adv.get_TagItem("page")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -572,10 +575,10 @@ namespace GCA5FantasyGroundsExporter
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", Perk.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Perk.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", Perk.Notes));
-                fileWriter.Paragraph(escapedItem("page", "string", Perk.get_TagItem("page")));
+                fileWriter.Paragraph(EscapedItem("name", "string", Perk.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Perk.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", Perk.Notes));
+                fileWriter.Paragraph(EscapedItem("page", "string", Perk.get_TagItem("page")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -584,10 +587,10 @@ namespace GCA5FantasyGroundsExporter
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                 fileWriter.Paragraph(index);
-                fileWriter.Paragraph(escapedItem("name", "string", Feature.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Feature.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", Feature.Notes));
-                fileWriter.Paragraph(escapedItem("page", "string", Feature.get_TagItem("page")));
+                fileWriter.Paragraph(EscapedItem("name", "string", Feature.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Feature.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", Feature.Notes));
+                fileWriter.Paragraph(EscapedItem("page", "string", Feature.get_TagItem("page")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -599,7 +602,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportDisadvantages(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportDisadvantages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
             var Disads = myCharacter.ItemsByType[(int)TraitTypes.Disadvantages];
@@ -614,10 +617,10 @@ namespace GCA5FantasyGroundsExporter
                 {
                     var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
                     fileWriter.Paragraph(index);
-                    fileWriter.Paragraph(escapedItem("name", "string", Template.DisplayName));
-                    fileWriter.Paragraph(escapedItem("points", "number", Template.Points.ToString()));
-                    fileWriter.Paragraph(escapedItem("text", "string", Template.Notes));
-                    fileWriter.Paragraph(escapedItem("page", "string", Template.get_TagItem("page")));
+                    fileWriter.Paragraph(EscapedItem("name", "string", Template.DisplayName));
+                    fileWriter.Paragraph(EscapedItem("points", "number", Template.Points.ToString()));
+                    fileWriter.Paragraph(EscapedItem("text", "string", Template.Notes));
+                    fileWriter.Paragraph(EscapedItem("page", "string", Template.get_TagItem("page")));
                     fileWriter.Paragraph(index.Insert(1, "/"));
                     i++;
                 }
@@ -627,10 +630,11 @@ namespace GCA5FantasyGroundsExporter
             foreach (GCATrait Disad in Disads)
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
-                fileWriter.Paragraph(escapedItem("name", "string", Disad.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Disad.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", Disad.Notes));
-                fileWriter.Paragraph(escapedItem("page", "string", Disad.get_TagItem("page")));
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("name", "string", Disad.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Disad.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", Disad.Notes));
+                fileWriter.Paragraph(EscapedItem("page", "string", Disad.get_TagItem("page")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -638,10 +642,11 @@ namespace GCA5FantasyGroundsExporter
             foreach (GCATrait Quirk in Quirks)
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
-                fileWriter.Paragraph(escapedItem("name", "string", Quirk.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Quirk.Points.ToString()));
-                fileWriter.Paragraph(escapedItem("text", "string", Quirk.Notes));
-                fileWriter.Paragraph(escapedItem("page", "string", Quirk.get_TagItem("page")));
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("name", "string", Quirk.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Quirk.Points.ToString()));
+                fileWriter.Paragraph(EscapedItem("text", "string", Quirk.Notes));
+                fileWriter.Paragraph(EscapedItem("page", "string", Quirk.get_TagItem("page")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -654,7 +659,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportCuluralFamiliarty(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportCuluralFamiliarty(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
             var Familirarities = myCharacter.ItemsByType[(int)TraitTypes.Cultures];
@@ -663,8 +668,9 @@ namespace GCA5FantasyGroundsExporter
             foreach (GCATrait Familiarity in Familirarities)
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
-                fileWriter.Paragraph(escapedItem("name", "string", Familiarity.DisplayName));
-                fileWriter.Paragraph(escapedItem("points", "number", Familiarity.Points.ToString()));
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("name", "string", Familiarity.DisplayName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Familiarity.Points.ToString()));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -676,7 +682,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportLanguages(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportLanguages(GCACharacter myCharacter, FileWriter fileWriter)
         {
             var i = 1;
             var Languages = myCharacter.ItemsByType[(int)TraitTypes.Languages];
@@ -685,10 +691,11 @@ namespace GCA5FantasyGroundsExporter
             foreach (GCATrait Language in Languages)
             {
                 var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
-                fileWriter.Paragraph(escapedItem("name", "string", Language.DisplayName));
-                fileWriter.Paragraph(escapedItem("spoken", "string", Language.LevelName));
-                fileWriter.Paragraph(escapedItem("written", "string", Language.LevelName));
-                fileWriter.Paragraph(escapedItem("points", "number", Language.Points.ToString()));
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("name", "string", Language.DisplayName));
+                fileWriter.Paragraph(EscapedItem("spoken", "string", Language.LevelName));
+                fileWriter.Paragraph(EscapedItem("written", "string", Language.LevelName));
+                fileWriter.Paragraph(EscapedItem("points", "number", Language.Points.ToString()));
                 fileWriter.Paragraph(index.Insert(1, "/"));
                 i++;
             }
@@ -700,14 +707,59 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="myCharacter"></param>
         /// <param name="fileWriter"></param>
-        private void exportReactionMods(GCACharacter myCharacter, FileWriter fileWriter)
+        private void ExportReactionMods(GCACharacter myCharacter, FileWriter fileWriter)
         {
             GCATrait reaction = myCharacter.ItemByNameAndExt("Reaction", (int)TraitTypes.Attributes);
             string reactionmods = reaction.get_TagItem("bonuslist");
             reactionmods = reactionmods + ", " + reaction.get_TagItem("conditionallist");
 
-            fileWriter.Paragraph(escapedItem("reactionmodifiers","string",reactionmods));
+            fileWriter.Paragraph(EscapedItem("reactionmodifiers","string",reactionmods));
         }
+        /// <summary>
+        /// Exports the inventory List
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void ExportInventory(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var i = 1;
+            var Items = myCharacter.ItemsByType[(int)TraitTypes.Equipment];
+
+            fileWriter.Paragraph("<inventorylist>");
+            foreach (GCATrait Item in Items)
+            {
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("isidentified", "number", "1"));
+                fileWriter.Paragraph(EscapedItem("name", "string", Item.DisplayName));
+                fileWriter.Paragraph(EscapedItem("count", "number", Item.get_TagItem("count")));
+                fileWriter.Paragraph(EscapedItem("cost", "string", Item.get_TagItem("cost")));
+                fileWriter.Paragraph(EscapedItem("weight", "number", Item.get_TagItem("weight") + Item.get_TagItem("charunits")));
+                fileWriter.Paragraph(EscapedItem("location", "string", Item.get_TagItem("charlocation")));
+                fileWriter.Paragraph(EscapedItem("notes", "formattedtext", Item.get_TagItem("description")));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
+            }
+            fileWriter.Paragraph("</inventorylist>");
+        }
+
+        private void ExportPointTotals(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            fileWriter.Paragraph("<pointtotals>");
+            fileWriter.Paragraph(EscapedItem("attributes", "number", myCharacter.get_Cost((int)TraitTypes.Stats).ToString()));
+            fileWriter.Paragraph(EscapedItem("ads", "number", myCharacter.get_Cost((int)TraitTypes.Advantages).ToString()));
+            fileWriter.Paragraph(EscapedItem("disads", "number", myCharacter.get_Cost((int)TraitTypes.Disadvantages).ToString()));
+            fileWriter.Paragraph(EscapedItem("quirks", "number", myCharacter.get_Cost((int)TraitTypes.Quirks).ToString()));
+            fileWriter.Paragraph(EscapedItem("skills", "number", myCharacter.get_Cost((int)TraitTypes.Skills).ToString()));
+            fileWriter.Paragraph(EscapedItem("spells", "number", myCharacter.get_Cost((int)TraitTypes.Spells).ToString()));
+            fileWriter.Paragraph(EscapedItem("powers", "number", "0"));
+            fileWriter.Paragraph(EscapedItem("others", "number", "0"));
+
+            fileWriter.Paragraph(EscapedItem("totalpoints", "number", myCharacter.TotalPoints.ToString()));
+            fileWriter.Paragraph(EscapedItem("unspentpoints", "number", myCharacter.UnspentPoints.ToString()));
+            fileWriter.Paragraph("</pointtotals>");
+        }
+
         /// <summary>
         /// creates the xml tag with propper escaping of characters
         /// </summary>
@@ -715,7 +767,7 @@ namespace GCA5FantasyGroundsExporter
         /// <param name="tagType"></param>
         /// <param name="item"></param>
         /// <returns></returns>
-        private string escapedItem(string tagName, string tagType, string item)
+        private string EscapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">"+  SecurityElement.Escape(item)  + "</" + tagName + ">";
         }
@@ -725,7 +777,7 @@ namespace GCA5FantasyGroundsExporter
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        private bool isItemHidden(GCATrait item)
+        private bool IsItemHidden(GCATrait item)
         {
             return !(item.get_TagItem("hidden") == "");
         }
@@ -735,12 +787,12 @@ namespace GCA5FantasyGroundsExporter
         /// <param name="item"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private string getDamageString(GCATrait item, int mode)
+        private string GetDamageString(GCATrait item, int mode)
         {
             return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
         }
 
-        private string getAdvantageName(GCATrait item)
+        private string GetAdvantageName(GCATrait item)
         {
             var returnValue = "";
             returnValue = item.Name;
