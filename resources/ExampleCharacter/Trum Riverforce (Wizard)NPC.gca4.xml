@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="2.8">
+<npc>
+<name type="string">Trum Riverforce</name>
+
+<notes type="formattedtext">
+<p>Race: Human</p>
+<p>height: </p>
+<p>weight: </p>
+<p>age: </p>
+<p>appearance: </p>
+</notes>
+<traits>
+<sizemodifier type="string">0</sizemodifier>
+<reactionmodifiers type="string">Status: +0 Other: +0 Conditional: -1 from &apos;Low Pain Threshold&apos; when from &apos;&apos;macho&apos;&apos; individuals, +3 from &apos;Quarterstaff (Poweritem)&apos;</reactionmodifiers>
+<description type="string">
+
+Wizard (Dungeon Fantasy)\rMagery (5)\rMagery 0\rSignature Gear (Powerfull Magic Staff) ($500)\r
+Curious (12 or less)\rLow Pain Threshold\rOblivious\rObsession (To become the world's most powerful...) (12 or less)\rSkinny\rProud
+</description>
+</traits>
+
+<attributes>
+<strength type="number">10</strength>
+<dexterity type="number">12</dexterity>
+<intelligence type="number">15</intelligence>
+<health type="number">11</health>
+<hitpoints type="number">10</hitpoints>
+<will type="number">15</will>
+<perception type="number">12</perception>
+<fatiguepoints type="number">17</fatiguepoints>
+<basicspeed type="string">6</basicspeed>
+<move type="string">6</move>
+<thrust type="string">1d-2</thrust>
+<swing type="string">1d</swing>
+</attributes>
+<combat>
+<dr type="string">1*</dr>
+<parry type="number">12</parry>
+<block type="number">7</block>
+<dodge type="number">9</dodge>
+
+<meleecombatlist>
+<id-00001>
+<name type="string">Air Jet</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string"></name>
+<level type="number">14</level>
+<damage type="string">~2d knock</damage>
+<reach type="string">~2</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00001>
+<id-00002>
+<name type="string">Bite</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Bite</name>
+<level type="number">12</level>
+<damage type="string">1d-3 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00002>
+<id-00003>
+<name type="string">Kick</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Kick</name>
+<level type="number">10</level>
+<damage type="string">1d-2 cr</damage>
+<reach type="string">C,1</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00003>
+<id-00004>
+<name type="string">Punch</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Punch</name>
+<level type="number">12</level>
+<damage type="string">1d-3 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">9</parry>
+</id-00001>
+</meleemodelist>
+</id-00004>
+<id-00005>
+<name type="string">Quarterstaff (Poweritem)</name>
+<st type="string">7†</st>
+<cost type="string">480</cost>
+<weight type="string">4</weight>
+<text type="string"></text>
+<tl type="string">0</tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Staff Swing</name>
+<level type="number">15</level>
+<damage type="string">1d+2 cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">12</parry>
+</id-00001>
+<id-00002>
+<name type="string">Staff Thrust</name>
+<level type="number">15</level>
+<damage type="string">1d cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">12</parry>
+</id-00002>
+<id-00003>
+<name type="string">2H Sword Swing</name>
+<level type="number">8</level>
+<damage type="string">1d+2 cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">7</parry>
+</id-00003>
+<id-00004>
+<name type="string">2H SwordThrust</name>
+<level type="number">8</level>
+<damage type="string">1d-1 cr</damage>
+<reach type="string">2</reach>
+<parry type="string">7</parry>
+</id-00004>
+</meleemodelist>
+</id-00005>
+</meleecombatlist>
+
+
+<rangedcombatlist>
+</rangedcombatlist>
+
+</combat>
+
+<abilities>
+<abilitieslist>
+<id-00001>
+<name type="string">Spell: Air Jet</name>
+<level type="number">18</level>
+</id-00001>
+<id-00002>
+<name type="string">Alchemy/TL3</name>
+<level type="number">15</level>
+</id-00002>
+<id-00003>
+<name type="string">Spell: Analyze Magic</name>
+<level type="number">18</level>
+</id-00003>
+<id-00004>
+<name type="string">Spell: Apportation</name>
+<level type="number">18</level>
+</id-00004>
+<id-00005>
+<name type="string">Spell: Armor</name>
+<level type="number">18</level>
+</id-00005>
+<id-00006>
+<name type="string">Body Sense</name>
+<level type="number">10</level>
+</id-00006>
+<id-00007>
+<name type="string">Cartography/TL3</name>
+<level type="number">14</level>
+</id-00007>
+<id-00008>
+<name type="string">Spell: Continual Light</name>
+<level type="number">18</level>
+</id-00008>
+<id-00009>
+<name type="string">Spell: Counterspell</name>
+<level type="number">18</level>
+</id-00009>
+<id-00010>
+<name type="string">Spell: Create Air</name>
+<level type="number">18</level>
+</id-00010>
+<id-00011>
+<name type="string">Spell: Create Earth</name>
+<level type="number">18</level>
+</id-00011>
+<id-00012>
+<name type="string">Spell: Detect Magic</name>
+<level type="number">18</level>
+</id-00012>
+<id-00013>
+<name type="string">Diplomacy</name>
+<level type="number">12</level>
+</id-00013>
+<id-00014>
+<name type="string">Spell: Dispel Magic</name>
+<level type="number">18</level>
+</id-00014>
+<id-00015>
+<name type="string">Spell: Earth to Air</name>
+<level type="number">18</level>
+</id-00015>
+<id-00016>
+<name type="string">Spell: Earth to Stone</name>
+<level type="number">18</level>
+</id-00016>
+<id-00017>
+<name type="string">Spell: Explosive Lightning</name>
+<level type="number">18</level>
+</id-00017>
+<id-00018>
+<name type="string">First Aid/TL3 (Human)</name>
+<level type="number">15</level>
+</id-00018>
+<id-00019>
+<name type="string">Hazardous Materials/TL3 (Magical)</name>
+<level type="number">14</level>
+</id-00019>
+<id-00020>
+<name type="string">Hidden Lore (Demon Lore)</name>
+<level type="number">14</level>
+</id-00020>
+<id-00021>
+<name type="string">Hidden Lore (Magical Items Lore)</name>
+<level type="number">14</level>
+</id-00021>
+<id-00022>
+<name type="string">Hidden Lore (Magical Writings Lore)</name>
+<level type="number">15</level>
+</id-00022>
+<id-00023>
+<name type="string">Hiking</name>
+<level type="number">10</level>
+</id-00023>
+<id-00024>
+<name type="string">Spell: Identify Spell</name>
+<level type="number">18</level>
+</id-00024>
+<id-00025>
+<name type="string">Innate Attack (Beam)</name>
+<level type="number">14</level>
+</id-00025>
+<id-00026>
+<name type="string">Innate Attack (Projectile)</name>
+<level type="number">13</level>
+</id-00026>
+<id-00027>
+<name type="string">Spell: Lend Energy</name>
+<level type="number">18</level>
+</id-00027>
+<id-00028>
+<name type="string">Spell: Light</name>
+<level type="number">18</level>
+</id-00028>
+<id-00029>
+<name type="string">Spell: Lightning</name>
+<level type="number">18</level>
+</id-00029>
+<id-00030>
+<name type="string">Spell: Lightning Weapon</name>
+<level type="number">18</level>
+</id-00030>
+<id-00031>
+<name type="string">Spell: Lockmaster</name>
+<level type="number">18</level>
+</id-00031>
+<id-00032>
+<name type="string">Meditation</name>
+<level type="number">14</level>
+</id-00032>
+<id-00033>
+<name type="string">Spell: Missile Shield</name>
+<level type="number">18</level>
+</id-00033>
+<id-00034>
+<name type="string">Occultism</name>
+<level type="number">15</level>
+</id-00034>
+<id-00035>
+<name type="string">Spell: Purify Air</name>
+<level type="number">18</level>
+</id-00035>
+<id-00036>
+<name type="string">Spell: Recover Energy</name>
+<level type="number">18</level>
+</id-00036>
+<id-00037>
+<name type="string">Research/TL3</name>
+<level type="number">14</level>
+</id-00037>
+<id-00038>
+<name type="string">Savoir-Faire (High Society)</name>
+<level type="number">14</level>
+</id-00038>
+<id-00039>
+<name type="string">Scrounging</name>
+<level type="number">12</level>
+</id-00039>
+<id-00040>
+<name type="string">Spell: Seek Earth</name>
+<level type="number">18</level>
+</id-00040>
+<id-00041>
+<name type="string">Spell: Shape Air</name>
+<level type="number">18</level>
+</id-00041>
+<id-00042>
+<name type="string">Spell: Shape Earth</name>
+<level type="number">18</level>
+</id-00042>
+<id-00043>
+<name type="string">Spell: Shield</name>
+<level type="number">18</level>
+</id-00043>
+<id-00044>
+<name type="string">Spell: Sound</name>
+<level type="number">18</level>
+</id-00044>
+<id-00045>
+<name type="string">Speed-Reading</name>
+<level type="number">14</level>
+</id-00045>
+<id-00046>
+<name type="string">Staff</name>
+<level type="number">14</level>
+</id-00046>
+<id-00047>
+<name type="string">Spell: Stone Missile</name>
+<level type="number">18</level>
+</id-00047>
+<id-00048>
+<name type="string">Teaching</name>
+<level type="number">14</level>
+</id-00048>
+<id-00049>
+<name type="string">Thaumatology</name>
+<level type="number">17</level>
+</id-00049>
+<id-00050>
+<name type="string">Spell: Thunderclap</name>
+<level type="number">18</level>
+</id-00050>
+<id-00051>
+<name type="string">Spell: Windstorm</name>
+<level type="number">18</level>
+</id-00051>
+<id-00052>
+<name type="string">Writing</name>
+<level type="number">14</level>
+</id-00052>
+</abilitieslist>>
+</abilities>
+</npc>
+</root>

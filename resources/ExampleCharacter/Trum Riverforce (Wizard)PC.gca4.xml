@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root release="4|CoreRPG:3" version="3.2">
+<character>
+<name type="string">Trum Riverforce</name>
+
+<abilities>
+
+<skilllist>
+<id-00001>
+<name type="string">Alchemy/TL3</name>
+<type type="string">IQ/VH</type>
+<level type="number">15</level>
+<relativelevel type="string">IQ+0</relativelevel>
+<points type="number">8</points>
+<text type="string"></text>
+</id-00001>
+<id-00002>
+<name type="string">Body Sense</name>
+<type type="string">DX/H</type>
+<level type="number">10</level>
+<relativelevel type="string">DX-2</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00002>
+<id-00003>
+<name type="string">Cartography/TL3</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00003>
+<id-00004>
+<name type="string">Diplomacy</name>
+<type type="string">IQ/H</type>
+<level type="number">12</level>
+<relativelevel type="string">IQ-3</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00004>
+<id-00005>
+<name type="string">First Aid/TL3 (Human)</name>
+<type type="string">IQ/E</type>
+<level type="number">15</level>
+<relativelevel type="string">IQ+0</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00005>
+<id-00006>
+<name type="string">Hazardous Materials/TL3 (Magical)</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00006>
+<id-00007>
+<name type="string">Hidden Lore (Demon Lore)</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00007>
+<id-00008>
+<name type="string">Hidden Lore (Magical Items Lore)</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00008>
+<id-00009>
+<name type="string">Hidden Lore (Magical Writings Lore)</name>
+<type type="string">IQ/A</type>
+<level type="number">15</level>
+<relativelevel type="string">IQ+0</relativelevel>
+<points type="number">2</points>
+<text type="string"></text>
+</id-00009>
+<id-00010>
+<name type="string">Hiking</name>
+<type type="string">HT/A</type>
+<level type="number">10</level>
+<relativelevel type="string">HT-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00010>
+<id-00011>
+<name type="string">Innate Attack (Beam)</name>
+<type type="string">DX/E</type>
+<level type="number">14</level>
+<relativelevel type="string">DX+2</relativelevel>
+<points type="number">4</points>
+<text type="string"></text>
+</id-00011>
+<id-00012>
+<name type="string">Innate Attack (Projectile)</name>
+<type type="string">DX/E</type>
+<level type="number">13</level>
+<relativelevel type="string">DX+1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00012>
+<id-00013>
+<name type="string">Meditation</name>
+<type type="string">Will/H</type>
+<level type="number">14</level>
+<relativelevel type="string">Will-1</relativelevel>
+<points type="number">2</points>
+<text type="string"></text>
+</id-00013>
+<id-00014>
+<name type="string">Occultism</name>
+<type type="string">IQ/A</type>
+<level type="number">15</level>
+<relativelevel type="string">IQ+0</relativelevel>
+<points type="number">2</points>
+<text type="string"></text>
+</id-00014>
+<id-00015>
+<name type="string">Research/TL3</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00015>
+<id-00016>
+<name type="string">Savoir-Faire (High Society)</name>
+<type type="string">IQ/E</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00016>
+<id-00017>
+<name type="string">Scrounging</name>
+<type type="string">Per/E</type>
+<level type="number">12</level>
+<relativelevel type="string">Per+0</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00017>
+<id-00018>
+<name type="string">Speed-Reading</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00018>
+<id-00019>
+<name type="string">Staff</name>
+<type type="string">DX/A</type>
+<level type="number">14</level>
+<relativelevel type="string">DX+2</relativelevel>
+<points type="number">8</points>
+<text type="string"></text>
+</id-00019>
+<id-00020>
+<name type="string">Teaching</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00020>
+<id-00021>
+<name type="string">Thaumatology</name>
+<type type="string">IQ/VH</type>
+<level type="number">17</level>
+<relativelevel type="string">IQ+2</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00021>
+<id-00022>
+<name type="string">Writing</name>
+<type type="string">IQ/A</type>
+<level type="number">14</level>
+<relativelevel type="string">IQ-1</relativelevel>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00022>
+</skilllist>
+
+
+<spelllist>
+<id-00001>
+<name type="string">Air Jet</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 sec.</duration>
+<costmaintain type="string">1 to 3/S</costmaintain>
+<resist type="string"></resist>
+<college type="string">Air</college>
+<page type="string">M24</page>
+</id-00001>
+<id-00002>
+<name type="string">Analyze Magic</name>
+<level type="number">18</level>
+<class type="string">Inform.</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 hr.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">8</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Knowledge</college>
+<page type="string">M102, B249</page>
+</id-00002>
+<id-00003>
+<name type="string">Apportation</name>
+<level type="number">18</level>
+<class type="string">Reg.</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-Will</resist>
+<college type="string">Movement</college>
+<page type="string">M142, B251</page>
+</id-00003>
+<id-00004>
+<name type="string">Armor</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-Will</resist>
+<college type="string">Protection &amp; Warning</college>
+<page type="string">M167, B253</page>
+</id-00004>
+<id-00005>
+<name type="string">Continual Light</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Varies</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-Will</resist>
+<college type="string">Light &amp; Darkness</college>
+<page type="string">M110, B249</page>
+</id-00005>
+<id-00006>
+<name type="string">Counterspell</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">5 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Meta-Spells</college>
+<page type="string">M121, B250</page>
+</id-00006>
+<id-00007>
+<name type="string">Create Air</name>
+<level type="number">18</level>
+<class type="string">Area</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">5 sec.#</duration>
+<costmaintain type="string">1</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Air</college>
+<page type="string">M23, B243</page>
+</id-00007>
+<id-00008>
+<name type="string">Create Earth</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Perm.</duration>
+<costmaintain type="string">2/cu. yd.</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Earth</college>
+<page type="string">M51, B246</page>
+</id-00008>
+<id-00009>
+<name type="string">Detect Magic</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">5 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">2</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Knowledge, Void/Sound/Ether</college>
+<page type="string">M101, B249</page>
+</id-00009>
+<id-00010>
+<name type="string">Dispel Magic</name>
+<level type="number">18</level>
+<class type="string">Area</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">sec.=cost</time>
+<duration type="string">Perm.</duration>
+<costmaintain type="string">3</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Meta-Spells</college>
+<page type="string">M126, B250</page>
+</id-00010>
+<id-00011>
+<name type="string">Earth to Air</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">2 sec.</time>
+<duration type="string">Perm.</duration>
+<costmaintain type="string">5/cu. yd.#</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Air, Earth</college>
+<page type="string">M25, B243</page>
+</id-00011>
+<id-00012>
+<name type="string">Earth to Stone</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 day</duration>
+<costmaintain type="string">3/cu. yd.#</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Earth</college>
+<page type="string">M51, B245</page>
+</id-00012>
+<id-00013>
+<name type="string">Explosive Lightning</name>
+<level type="number">18</level>
+<class type="string">Missile</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 to 3 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">2 to 2xMagery#</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Air</college>
+<page type="string">M196</page>
+</id-00013>
+<id-00014>
+<name type="string">Identify Spell</name>
+<level type="number">18</level>
+<class type="string">Information</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">2</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Knowledge</college>
+<page type="string">M102, B249</page>
+</id-00014>
+<id-00015>
+<name type="string">Lend Energy</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Perm.</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Meta-Spells</college>
+<page type="string">M89, B248</page>
+</id-00015>
+<id-00016>
+<name type="string">Light</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">1/1</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Light &amp; Darkness</college>
+<page type="string">M110, B249</page>
+</id-00016>
+<id-00017>
+<name type="string">Lightning</name>
+<level type="number">18</level>
+<class type="string">Missile</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 to 3 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">1 to Magery#</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Weather, Air</college>
+<page type="string">M196, B244</page>
+</id-00017>
+<id-00018>
+<name type="string">Lightning Weapon</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">2 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">4/1</costmaintain>
+<resist type="string">R-spell</resist>
+<college type="string">Weather, Air</college>
+<page type="string">M198</page>
+</id-00018>
+<id-00019>
+<name type="string">Lockmaster</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">10 sec.</time>
+<duration type="string">Perm.</duration>
+<costmaintain type="string">3</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Movement</college>
+<page type="string">M144, B251</page>
+</id-00019>
+<id-00020>
+<name type="string">Missile Shield</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">5/2</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Protection &amp; Warning</college>
+<page type="string">M168</page>
+</id-00020>
+<id-00021>
+<name type="string">Purify Air</name>
+<level type="number">18</level>
+<class type="string">Area</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">1</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Air</college>
+<page type="string">M23, B243</page>
+</id-00021>
+<id-00022>
+<name type="string">Recover Energy</name>
+<level type="number">18</level>
+<class type="string">Special</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">Special</time>
+<duration type="string">Special</duration>
+<costmaintain type="string">none</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Meta-Spells</college>
+<page type="string">M89, B248</page>
+</id-00022>
+<id-00023>
+<name type="string">Seek Earth</name>
+<level type="number">18</level>
+<class type="string">Information</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">10 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">3</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Earth</college>
+<page type="string">M50, B245</page>
+</id-00023>
+<id-00024>
+<name type="string">Shape Air</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">1 to 10#</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Air</college>
+<page type="string">M24, B243</page>
+</id-00024>
+<id-00025>
+<name type="string">Shape Earth</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">1/cu. yd./h</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Earth</college>
+<page type="string">M50, B245</page>
+</id-00025>
+<id-00026>
+<name type="string">Shield</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">1 min.</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Protection &amp; Warning</college>
+<page type="string">M167, B252</page>
+</id-00026>
+<id-00027>
+<name type="string">Sound</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Varies</duration>
+<costmaintain type="string">Varies</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Sound</college>
+<page type="string">M171, F172</page>
+</id-00027>
+<id-00028>
+<name type="string">Stone Missile</name>
+<level type="number">18</level>
+<class type="string">Missile</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 to 3 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">1 to Magery</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Earth</college>
+<page type="string">M52</page>
+</id-00028>
+<id-00029>
+<name type="string">Thunderclap</name>
+<level type="number">18</level>
+<class type="string">Regular</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">1 sec.</time>
+<duration type="string">Instant</duration>
+<costmaintain type="string">2</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Sound</college>
+<page type="string">M171</page>
+</id-00029>
+<id-00030>
+<name type="string">Windstorm</name>
+<level type="number">18</level>
+<class type="string">Area</class>
+<type type="string">IQ/H</type>
+<points type="number">1</points>
+<text type="string"></text>
+<time type="string">Instant#</time>
+<duration type="string">1 min.#</duration>
+<costmaintain type="string">2/H</costmaintain>
+<resist type="string">R-Magelock</resist>
+<college type="string">Air</college>
+<page type="string">M25</page>
+</id-00030>
+</spelllist>
+
+</abilities>
+
+
+<attributes>
+<strength type="number">10</strength>
+<strength_points type="number">0</strength_points>
+<dexterity type="number">12</dexterity>
+<dexterity_points type="number">40</dexterity_points>
+<intelligence type="number">15</intelligence>
+<intelligence_points type="number">100</intelligence_points>
+<health type="number">11</health>
+<health_points type="number">10</health_points>
+<hitpoints type="number">10</hitpoints>
+<hitpoints_points type="number">0</hitpoints_points>
+<hps type="number">10</hps>
+<will type="number">15</will>
+<will_points type="number">0</will_points>
+<perception type="number">12</perception>
+<perception_points type="number">-15</perception_points>
+<fatiguepoints type="number">17</fatiguepoints>
+<fatiguepoints_points type="number">18</fatiguepoints_points>
+<fps type="number">17</fps>
+<basiclift type="string">20</basiclift>
+<thrust type="string">1d-2</thrust>
+<swing type="string">1d</swing>
+<basicspeed type="string">6</basicspeed>
+<basicspeed_points type="number">5</basicspeed_points>
+<basicmove type="string">6</basicmove>
+<basicmove_points type="number">0</basicmove_points>
+<move type="string">6</move>
+</attributes>
+
+
+<combat>
+<enc0_dodge type="number">9</enc0_dodge>
+<enc1_dodge type="number">8</enc1_dodge>
+<enc2_dodge type="number">7</enc2_dodge>
+<enc3_dodge type="number">6</enc3_dodge>
+<enc4_dodge type="number">5</enc4_dodge>
+<dodge type="number">9</dodge>
+<parry type="number">12</parry>
+<block type="number">7</block>
+<dr type="string">1*</dr>
+
+<meleecombatlist>
+<id-00001>
+<name type="string">Air Jet</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string"></name>
+<level type="number">14</level>
+<damage type="string">~2d knock</damage>
+<reach type="string">~2</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00001>
+<id-00002>
+<name type="string">Bite</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Bite</name>
+<level type="number">12</level>
+<damage type="string">1d-3 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00002>
+<id-00003>
+<name type="string">Kick</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Kick</name>
+<level type="number">10</level>
+<damage type="string">1d-2 cr</damage>
+<reach type="string">C,1</reach>
+<parry type="string">No</parry>
+</id-00001>
+</meleemodelist>
+</id-00003>
+<id-00004>
+<name type="string">Punch</name>
+<st type="string"></st>
+<cost type="string">0</cost>
+<weight type="string">0</weight>
+<text type="string"></text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Punch</name>
+<level type="number">12</level>
+<damage type="string">1d-3 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">9</parry>
+</id-00001>
+</meleemodelist>
+</id-00004>
+<id-00005>
+<name type="string">Quarterstaff (Poweritem)</name>
+<st type="string">7†</st>
+<cost type="string">480</cost>
+<weight type="string">4</weight>
+<text type="string"></text>
+<tl type="string">0</tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Staff Swing</name>
+<level type="number">15</level>
+<damage type="string">1d+2 cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">12</parry>
+</id-00001>
+<id-00002>
+<name type="string">Staff Thrust</name>
+<level type="number">15</level>
+<damage type="string">1d cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">12</parry>
+</id-00002>
+<id-00003>
+<name type="string">2H Sword Swing</name>
+<level type="number">8</level>
+<damage type="string">1d+2 cr</damage>
+<reach type="string">1, 2</reach>
+<parry type="string">7</parry>
+</id-00003>
+<id-00004>
+<name type="string">2H SwordThrust</name>
+<level type="number">8</level>
+<damage type="string">1d-1 cr</damage>
+<reach type="string">2</reach>
+<parry type="string">7</parry>
+</id-00004>
+</meleemodelist>
+</id-00005>
+</meleecombatlist>
+
+
+<rangedcombatlist>
+</rangedcombatlist>
+
+
+<protectionlist>
+<id-00001>
+<location type="string">Eyes</location>
+<dr type="string">0</dr>
+</id-00001>
+<id-00002>
+<location type="string">Neck</location>
+<dr type="string">0</dr>
+</id-00002>
+<id-00003>
+<location type="string">Skull</location>
+<dr type="string">1*+2</dr>
+</id-00003>
+<id-00004>
+<location type="string">Face</location>
+<dr type="string">0</dr>
+</id-00004>
+<id-00005>
+<location type="string">Torso</location>
+<dr type="string">1*</dr>
+</id-00005>
+<id-00006>
+<location type="string">Groin</location>
+<dr type="string">1*</dr>
+</id-00006>
+<id-00007>
+<location type="string">Arms</location>
+<dr type="string">1*</dr>
+</id-00007>
+<id-00008>
+<location type="string">Hands</location>
+<dr type="string">2*</dr>
+</id-00008>
+<id-00009>
+<location type="string">Legs</location>
+<dr type="string">1*</dr>
+</id-00009>
+<id-00010>
+<location type="string">Feet</location>
+<dr type="string">2*</dr>
+</id-00010>
+</protectionlist>
+
+</combat>
+
+
+<encumbrance>
+<enc_0 type="number">1</enc_0>
+<enc_1 type="number">0</enc_1>
+<enc_2 type="number">0</enc_2>
+<enc_3 type="number">0</enc_3>
+<enc_4 type="number">0</enc_4>
+<enc0_weight type="string">20</enc0_weight>
+<enc1_weight type="string">40</enc1_weight>
+<enc2_weight type="string">60</enc2_weight>
+<enc3_weight type="string">120</enc3_weight>
+<enc4_weight type="string">200</enc4_weight>
+<enc0_move type="string">6</enc0_move>
+<enc1_move type="string">4</enc1_move>
+<enc2_move type="string">3</enc2_move>
+<enc3_move type="string">2</enc3_move>
+<enc4_move type="string">1</enc4_move>
+<enc0_dodge type="number">9</enc0_dodge>
+<enc1_dodge type="number">8</enc1_dodge>
+<enc2_dodge type="number">7</enc2_dodge>
+<enc3_dodge type="number">6</enc3_dodge>
+<enc4_dodge type="number">5</enc4_dodge>
+</encumbrance>
+
+
+<traits>
+<race type="string">Human</race>
+<height type="string"></height>
+<weight type="string"></weight>
+<age type="string"></age>
+<appearance type="string"></appearance>
+<sizemodifier type="string">0</sizemodifier>
+<reach type="string">0</reach>
+
+<adslist>
+<id-00001>
+<name type="string">Wizard (Dungeon Fantasy)</name>
+<points type="number">0</points>
+<text type="string"></text>
+</id-00001>
+<id-00002>
+<name type="string">Magery (5)</name>
+<points type="number">50</points>
+<text type="string"></text>
+</id-00002>
+<id-00003>
+<name type="string">Magery 0</name>
+<points type="number">5</points>
+<text type="string"></text>
+</id-00003>
+<id-00004>
+<name type="string">Signature Gear (Powerfull Magic Staff) ($500)</name>
+<points type="number">1</points>
+<text type="string"></text>
+</id-00004>
+</adslist>
+
+
+<disadslist>
+<id-00001>
+<name type="string">Curious (12 or less)</name>
+<points type="number">-5</points>
+<text type="string"></text>
+</id-00001>
+<id-00002>
+<name type="string">Low Pain Threshold</name>
+<points type="number">-10</points>
+<text type="string"></text>
+</id-00002>
+<id-00003>
+<name type="string">Oblivious</name>
+<points type="number">-5</points>
+<text type="string"></text>
+</id-00003>
+<id-00004>
+<name type="string">Obsession (To become the world's most powerful...) (12 or less)</name>
+<points type="number">-10</points>
+<text type="string"></text>
+</id-00004>
+<id-00005>
+<name type="string">Skinny</name>
+<points type="number">-5</points>
+<text type="string"></text>
+</id-00005>
+<id-00006>
+<name type="string">Proud</name>
+<points type="number">-1</points>
+<text type="string"></text>
+</id-00006>
+</disadslist>
+
+
+<culturalfamiliaritylist>
+</culturalfamiliaritylist>
+
+
+<languagelist>
+<id-00001>
+<name type = "string">Common (Native)</name>
+<spoken type = "string">Native</spoken>
+<written type = "string">Native</written>
+<points type = "number">0</points>
+</id-00001>
+</languagelist>
+
+<reactionmodifiers type="string">Status: +0\rOther: +0 Conditional: -1 from &apos;Low Pain Threshold&apos; when from &apos;&apos;macho&apos;&apos; individuals, +3 from &apos;Quarterstaff (Poweritem)&apos;</reactionmodifiers>
+<tl type = "string">3</tl>
+<tl_points type = "number">0</tl_points>
+</traits>
+
+
+<inventorylist>
+<id-00001>
+<isidentified type="number">1</isidentified>
+<name type="string">Backpack, Frame</name>
+<count type="number">1</count>
+<cost type="string">230</cost>
+<weight type="number">28.75</weight>
+<location type="string"></location>
+<notes type="formattedtext">TL:1 Notes: Holds 100 lbs. of gear.</notes>
+</id-00001>
+<id-00002>
+<isidentified type="number">1</isidentified>
+<name type="string">Blanket</name>
+<count type="number">1</count>
+<cost type="string">20</cost>
+<weight type="number">4</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: A warm bedroll.</notes>
+</id-00002>
+<id-00003>
+<isidentified type="number">1</isidentified>
+<name type="string">Boots</name>
+<count type="number">1</count>
+<cost type="string">80</cost>
+<weight type="number">3</weight>
+<location type="string">feet</location>
+<notes type="formattedtext">TL:2 LC:-- DR:2* Locations: feet Notes: [1] Concealable as or under clothing.</notes>
+</id-00003>
+<id-00004>
+<isidentified type="number">1</isidentified>
+<name type="string">Canteen</name>
+<count type="number">1</count>
+<cost type="string">10</cost>
+<weight type="number">3</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: Canteen. Miniature wooden barrel on a strap. Won&apos;t shatter in combat! Holds 1 quart of liquid (2 lbs. if water).</notes>
+</id-00004>
+<id-00005>
+<isidentified type="number">1</isidentified>
+<name type="string">Copper Farthing</name>
+<count type="number">58</count>
+<cost type="string">1</cost>
+<weight type="number">0.016</weight>
+<location type="string"></location>
+<notes type="formattedtext"></notes>
+</id-00005>
+<id-00006>
+<isidentified type="number">1</isidentified>
+<name type="string">First Aid Kit</name>
+<count type="number">1</count>
+<cost type="string">50</cost>
+<weight type="number">2</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: A complete kit for treating wounds. +1 to First Aid skill.</notes>
+</id-00006>
+<id-00007>
+<isidentified type="number">1</isidentified>
+<name type="string">Gold Piece</name>
+<count type="number">3</count>
+<cost type="string">80</cost>
+<weight type="number">0.004</weight>
+<location type="string"></location>
+<notes type="formattedtext"></notes>
+</id-00007>
+<id-00008>
+<isidentified type="number">1</isidentified>
+<name type="string">Leather Cap</name>
+<count type="number">1</count>
+<cost type="string">32</cost>
+<weight type="number">0</weight>
+<location type="string">skull</location>
+<notes type="formattedtext">TL:1 LC:4 DR:1* Locations: skull</notes>
+</id-00008>
+<id-00009>
+<isidentified type="number">1</isidentified>
+<name type="string">Leather Gloves</name>
+<count type="number">1</count>
+<cost type="string">30</cost>
+<weight type="number">0</weight>
+<location type="string">hands</location>
+<notes type="formattedtext">TL:1 LC:-- DR:2* Locations: hands</notes>
+</id-00009>
+<id-00010>
+<isidentified type="number">1</isidentified>
+<name type="string">Leather Jacket</name>
+<count type="number">1</count>
+<cost type="string">50</cost>
+<weight type="number">4</weight>
+<location type="string">arms, torso</location>
+<notes type="formattedtext">TL:1 LC:-- DR:1* Locations: arms, torso Notes: [1] Concealable as or under clothing.</notes>
+</id-00010>
+<id-00011>
+<isidentified type="number">1</isidentified>
+<name type="string">Leather Pants</name>
+<count type="number">1</count>
+<cost type="string">40</cost>
+<weight type="number">3</weight>
+<location type="string">groin, legs</location>
+<notes type="formattedtext">TL:1 LC:-- DR:1* Locations: legs, groin Notes: [1] Concealable as or under clothing.</notes>
+</id-00011>
+<id-00012>
+<isidentified type="number">1</isidentified>
+<name type="string">Personal Basics</name>
+<count type="number">1</count>
+<cost type="string">5</cost>
+<weight type="number">1</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: Minimum gear for camping: -2 to any Survival roll without it. Includes utensils, tinderbox, and flint and steel.</notes>
+</id-00012>
+<id-00013>
+<isidentified type="number">1</isidentified>
+<name type="string">Purse</name>
+<count type="number">1</count>
+<cost type="string">10</cost>
+<weight type="number">0</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: Holds 3 lbs. of small items (coins, personal basics, etc.)</notes>
+</id-00013>
+<id-00014>
+<isidentified type="number">1</isidentified>
+<name type="string">Purse</name>
+<count type="number">1</count>
+<cost type="string">518</cost>
+<weight type="number">1.15</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: Holds 3 lbs. of small items (coins, personal basics, etc.)</notes>
+</id-00014>
+<id-00015>
+<isidentified type="number">1</isidentified>
+<name type="string">Quarterstaff (Poweritem)</name>
+<count type="number">1</count>
+<cost type="string">480</cost>
+<weight type="number">4</weight>
+<location type="string"></location>
+<notes type="formattedtext">TL:0 LC:4, [Dam:sw+2 cr Reach:1, 2 Parry:2 ST:7 Skill:Staff, DX-5, Polearm-4, Spear-2], [Dam:thr+2 cr Reach:1, 2 Parry:2 ST:7 Skill:Staff, DX-5, Polearm-4, Spear-2], [Dam:sw+2 cr Reach:1, 2 Parry:0 ST:9 Skill:Two-Handed Sword, DX-5, Broadsword-4, Force Sword-4], [Dam:thr+1 cr Reach:2 Parry:0 ST:9 Skill:Two-Handed Sword, DX-5, Broadsword-4, Force Sword-4]</notes>
+</id-00015>
+<id-00016>
+<isidentified type="number">1</isidentified>
+<name type="string">Rations</name>
+<count type="number">21</count>
+<cost type="string">2</cost>
+<weight type="number">0.5</weight>
+<location type="string"></location>
+<notes type="formattedtext">TL:0 Notes: One meal of dried meat, cheese, etc.</notes>
+</id-00016>
+<id-00017>
+<isidentified type="number">1</isidentified>
+<name type="string">Silver Drake</name>
+<count type="number">21</count>
+<cost type="string">10</cost>
+<weight type="number">0.01</weight>
+<location type="string"></location>
+<notes type="formattedtext"></notes>
+</id-00017>
+<id-00018>
+<isidentified type="number">1</isidentified>
+<name type="string">Torch</name>
+<count type="number">1</count>
+<cost type="string">3</cost>
+<weight type="number">1</weight>
+<location type="string"></location>
+<notes type="formattedtext">Notes: Eliminates darkness penalties in a two-yard radius. Requires a hand. Burns for 1hr.</notes>
+</id-00018>
+<id-00019>
+<isidentified type="number">1</isidentified>
+<name type="string">Wineskin</name>
+<count type="number">1</count>
+<cost type="string">10</cost>
+<weight type="number">0.25</weight>
+<location type="string"></location>
+<notes type="formattedtext">TL:0 Notes: Holds 1 gallon of liquid.</notes>
+</id-00019>
+</inventorylist>
+
+<pointtotals>
+<attributes type="number">158</attributes>
+<ads type="number">56</ads>
+<disads type="number">-35</disads>
+<quirks type="number">-1</quirks>
+<skills type="number">42</skills>
+<spells type="number">30</spells>
+<powers type="number">0</powers>
+<others type="number">0</others>
+<totalpoints type="number">250</totalpoints>
+<unspentpoints type="number">0</unspentpoints>
+</pointtotals>
+
+</character>
+</root>
