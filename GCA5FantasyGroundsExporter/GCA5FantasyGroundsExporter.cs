@@ -30,12 +30,12 @@ namespace GCA5FantasyGroundsExporter
 
         public string PluginName()
         {
-            return "Fantasy Grunds PC export";
+            return "Fantasy Grounds PC export";
         }
 
         public string PluginDescription()
         {
-            return "Export Character as PC to Fantasy Grunds";
+            return "Export Character as PC to Fantasy Grounds";
         }
 
         public string PluginVersion()
