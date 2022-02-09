@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="GCA5.Interfaces">
+      <HintPath>..\assemblies\GCA5.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="GCA5Engine">
+      <HintPath>..\assemblies\GCA5Engine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
