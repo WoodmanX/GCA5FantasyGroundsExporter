@@ -145,12 +145,12 @@ namespace GCA5FantasyGroundsExporterNPC
 
         private void ExportNotes(GCACharacter myCharacter, FileWriter fileWriter)
         {
-            fileWriter.Paragraph("<notes> type=\"formattedtext\"");
-            fileWriter.Paragraph(EscapedItem("p", "string","Race: " + myCharacter.Race));
-            fileWriter.Paragraph(EscapedItem("p", "string", "height: " + myCharacter.Height));
-            fileWriter.Paragraph(EscapedItem("p", "string", "weight: " + myCharacter.Weight));
-            fileWriter.Paragraph(EscapedItem("p", "string", "age: " + myCharacter.Age));
-            fileWriter.Paragraph(EscapedItem("p", "string", "appearance: " + myCharacter.Appearance));
+            fileWriter.Paragraph("<notes type=\"formattedtext\">");
+            fileWriter.Paragraph(EscapedItem("p","Race: " + myCharacter.Race));
+            fileWriter.Paragraph(EscapedItem("p", "height: " + myCharacter.Height));
+            fileWriter.Paragraph(EscapedItem("p", "weight: " + myCharacter.Weight));
+            fileWriter.Paragraph(EscapedItem("p", "age: " + myCharacter.Age));
+            fileWriter.Paragraph(EscapedItem("p", "appearance: " + myCharacter.Appearance));
             fileWriter.Paragraph("</notes>");
         }
 
@@ -320,6 +320,7 @@ namespace GCA5FantasyGroundsExporterNPC
         /// <param name="fileWriter"></param>
         private void ExportCombat(GCACharacter myCharacter, FileWriter fileWriter)
         {
+            fileWriter.Paragraph("<combat>");
             fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
@@ -452,6 +453,11 @@ namespace GCA5FantasyGroundsExporterNPC
         private string EscapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">" + SecurityElement.Escape(item) + "</" + tagName + ">";
+        }
+
+        private string EscapedItem(string tagName, string item)
+        {
+            return "<" + tagName + ">" + SecurityElement.Escape(item) + "</" + tagName + ">";
         }
 
         /// <summary>

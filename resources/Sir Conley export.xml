@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root release="4 | CoreRPG:3" version="3.2">
+<npc>
+<name type="string">Sir Conley</name>
+<notes type="formattedtext">
+<p>Race: Human</p>
+<p>height: </p>
+<p>weight: </p>
+<p>age: </p>
+<p>appearance: </p>
+</notes>
+<abilities>
+<abilitieslist>
+<id-00001>
+<name type="string">Animal Handling (Equines)</name>
+<level type="number">12</level>
+</id-00001>
+<id-00002>
+<name type="string">Armoury/TL3 (Body Armor)</name>
+<level type="number">13</level>
+</id-00002>
+<id-00003>
+<name type="string">Armoury/TL3 (Melee Weapons)</name>
+<level type="number">13</level>
+</id-00003>
+<id-00004>
+<name type="string">Brawling</name>
+<level type="number">12</level>
+</id-00004>
+<id-00005>
+<name type="string">Broadsword</name>
+<level type="number">13</level>
+</id-00005>
+<id-00006>
+<name type="string">Crossbow</name>
+<level type="number">13</level>
+</id-00006>
+<id-00007>
+<name type="string">Diplomacy</name>
+<level type="number">10</level>
+</id-00007>
+<id-00008>
+<name type="string">First Aid/TL3 (Human)</name>
+<level type="number">12</level>
+</id-00008>
+<id-00009>
+<name type="string">Heraldry</name>
+<level type="number">13</level>
+</id-00009>
+<id-00010>
+<name type="string">Hiking</name>
+<level type="number">11</level>
+</id-00010>
+<id-00011>
+<name type="string">Knife</name>
+<level type="number">11</level>
+</id-00011>
+<id-00012>
+<name type="string">Leadership</name>
+<level type="number">13</level>
+</id-00012>
+<id-00013>
+<name type="string">Public Speaking (Rhetoric)</name>
+<level type="number">13</level>
+</id-00013>
+<id-00014>
+<name type="string">Riding (Equines)</name>
+<level type="number">13</level>
+</id-00014>
+<id-00015>
+<name type="string">Savoir-Faire (High Society)</name>
+<level type="number">14</level>
+</id-00015>
+<id-00016>
+<name type="string">Savoir-Faire (Military)</name>
+<level type="number">14</level>
+</id-00016>
+<id-00017>
+<name type="string">Shield (Shield)</name>
+<level type="number">12</level>
+</id-00017>
+<id-00018>
+<name type="string">Strategy (Land)</name>
+<level type="number">11</level>
+</id-00018>
+<id-00019>
+<name type="string">Tactics</name>
+<level type="number">11</level>
+</id-00019>
+<id-00020>
+<name type="string">Wrestling</name>
+<level type="number">11</level>
+</id-00020>
+</abilitieslist>
+</abilities>
+<traits>
+<sizemodifier type="string">0</sizemodifier>
+<reactionmodifiers type="string">+1 from &apos;Charisma&apos;, 0 from &apos;Diplomacy&apos;, +1 from &apos;Born War-Leader&apos;, +2 from &apos;Overconfidence&apos; when young or naive individuals, -2 from &apos;Overconfidence&apos; when experienced NPCs, -1 from &apos;Stubbornness&apos;</reactionmodifiers>
+<description type="string">
+Born War-Leader\rCharisma\rFearlessness\rStatus\rWealth\rCode of Honor (Chivalry)\rOverconfidence\rStubbornness\rProud\r
+</description>
+</traits>
+<attributes>
+<strength type="number">12</strength>
+<dexterity type="number">11</dexterity>
+<intelligence type="number">12</intelligence>
+<health type="number">12</health>
+<hitpoints type="number">12</hitpoints>
+<will type="number">11</will>
+<perception type="number">12</perception>
+<fatiguepoints type="number">12</fatiguepoints>
+<basicspeed type="string">5.75</basicspeed>
+<thrust type="string">1d-1</thrust>
+<swing type="string">1d+2</swing>
+</attributes>
+<combat>
+<dr type="string">0</dr>
+<dodge type="number">8</dodge>
+<parry type="number">0</parry>
+<block type="number">0</block>
+<meleecombatlist>
+<id-00001>
+<name type="string">Brawling</name>
+<st type="string"></st>
+<cost type="string"></cost>
+<weight type="string"></weight>
+<text type="string">Notes: Calculated damage takes into account bonuses from Teeth, Weak Bite, Claws, and skill level. You may add the modifier &quot;Has Gauntlets/Brass Knuckles&quot; or &quot;Has Boots&quot; to apply the +1 damage to Punch or Kick, as appropriate.</text>
+<tl type="string"></tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Punch</name>
+<level type="number">12</level>
+<damage type="string">1d-2 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">0</parry>
+</id-00001>
+<id-00002>
+<name type="string">Bite</name>
+<level type="number">12</level>
+<damage type="string">1d-2 cr</damage>
+<reach type="string">C</reach>
+<parry type="string">No</parry>
+</id-00002>
+<id-00003>
+<name type="string">Kick</name>
+<level type="number">10</level>
+<damage type="string">1d-1 cr</damage>
+<reach type="string">C,1</reach>
+<parry type="string">No</parry>
+</id-00003>
+</meleemodelist>
+</id-00001>
+<id-00002>
+<name type="string">Large Knife</name>
+<st type="string">6</st>
+<cost type="string">40</cost>
+<weight type="string">1</weight>
+<text type="string">TL:0 LC:4 \par [Mode: thrown Dam:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:6 Bulk:-2] \par [Mode:swing Dam:sw-2 cut Reach:C,1 Parry:-1 ST:6 Skill:Knife] \par [Mode:thrust Dam:thr imp Reach:C Parry:-1 ST:6 Skill:Knife Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)]</text>
+<tl type="string">0</tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Swing</name>
+<level type="number">11</level>
+<damage type="string">1d cut</damage>
+<reach type="string">C,1</reach>
+<parry type="string">-1</parry>
+</id-00001>
+<id-00002>
+<name type="string">Thrust</name>
+<level type="number">11</level>
+<damage type="string">1d-1 imp</damage>
+<reach type="string">C</reach>
+<parry type="string">-1</parry>
+</id-00002>
+</meleemodelist>
+</id-00002>
+<id-00003>
+<name type="string">Medium Shield</name>
+<st type="string"></st>
+<cost type="string">60</cost>
+<weight type="string">15</weight>
+<text type="string">TL:1 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.</text>
+<tl type="string">1</tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Bash</name>
+<level type="number">12</level>
+<damage type="string">1d-1 cr</damage>
+<reach type="string">1</reach>
+<parry type="string">No</parry>
+</id-00001>
+<id-00002>
+<name type="string">Rush</name>
+<level type="number">12</level>
+<damage type="string">slam+2 cr</damage>
+<reach type="string">1</reach>
+<parry type="string">No</parry>
+</id-00002>
+</meleemodelist>
+</id-00003>
+<id-00004>
+<name type="string">Thrusting Broadsword</name>
+<st type="string">10</st>
+<cost type="string">600</cost>
+<weight type="string">3</weight>
+<text type="string">TL:2 LC:4 \par [Mode:swing Dam:sw+1 cut Reach:1 Parry:0 ST:10 Skill:Broadsword] \par [Mode:thrust Dam:thr+2 imp Reach:1 Parry:0 ST:10 Skill:Broadsword]</text>
+<tl type="string">2</tl>
+<meleemodelist>
+<id-00001>
+<name type="string">Swing</name>
+<level type="number">13</level>
+<damage type="string">1d+3 cut</damage>
+<reach type="string">1</reach>
+<parry type="string">0</parry>
+</id-00001>
+<id-00002>
+<name type="string">Thrust</name>
+<level type="number">13</level>
+<damage type="string">1d+1 imp</damage>
+<reach type="string">1</reach>
+<parry type="string">0</parry>
+</id-00002>
+</meleemodelist>
+</id-00004>
+</meleecombatlist>
+<rangedcombatlist>
+<id-00001>
+<name type="string">Crossbow</name>
+<st type="string">7†</st>
+<bulk type="number">-6</bulk>
+<lc type="string">4</lc>
+<text type="string">TL:2 LC:4 \par Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3]</text>
+<tl type="string">2</tl>
+<rangedmodelist>
+<id-00001>
+<name type="string">Barbed-head</name>
+<level type="number">13</level>
+<damage type="string">1d+3 imp</damage>
+<acc type="number">4</acc>
+<range type="string">240/300</range>
+<rof type="string">1</rof>
+<shots type="string">1(4)</shots>
+<rcl type="number"></rcl>
+</id-00001>
+</rangedmodelist>
+</id-00001>
+<id-00002>
+<name type="string">Large Knife</name>
+<st type="string">6</st>
+<bulk type="number"></bulk>
+<lc type="string">4</lc>
+<text type="string">TL:0 LC:4 \par [Mode: thrown Dam:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:6 Bulk:-2] \par [Mode:swing Dam:sw-2 cut Reach:C,1 Parry:-1 ST:6 Skill:Knife] \par [Mode:thrust Dam:thr imp Reach:C Parry:-1 ST:6 Skill:Knife Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)]</text>
+<tl type="string">0</tl>
+<rangedmodelist>
+<id-00001>
+<name type="string">Swing</name>
+<level type="number">11</level>
+<damage type="string">1d cut</damage>
+<acc type="number"></acc>
+<range type="string">/</range>
+<rof type="string"></rof>
+<shots type="string"></shots>
+<rcl type="number"></rcl>
+</id-00001>
+<id-00003>
+<name type="string">Thrown</name>
+<level type="number">7</level>
+<damage type="string">1d-1 imp</damage>
+<acc type="number">0</acc>
+<range type="string">10/18</range>
+<rof type="string">1</rof>
+<shots type="string">T(1)</shots>
+<rcl type="number"></rcl>
+</id-00003>
+</rangedmodelist>
+</id-00002>
+</rangedcombatlist>
+</combat>
+</npc>
+</root>
