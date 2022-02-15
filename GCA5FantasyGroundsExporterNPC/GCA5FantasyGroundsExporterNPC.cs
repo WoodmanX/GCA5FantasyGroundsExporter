@@ -321,11 +321,10 @@ namespace GCA5FantasyGroundsExporterNPC
         private void ExportCombat(GCACharacter myCharacter, FileWriter fileWriter)
         {
             fileWriter.Paragraph("<combat>");
-            fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.OtherDR));
             fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.ItemByNameAndExt("Block", (int)TraitTypes.Stats).Score.ToString()));
-
+            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ParryScore.ToString()));
+            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.BlockScore.ToString()));
             ExportMeleeList(myCharacter, fileWriter);
             ExportRangedList(myCharacter, fileWriter);
 
