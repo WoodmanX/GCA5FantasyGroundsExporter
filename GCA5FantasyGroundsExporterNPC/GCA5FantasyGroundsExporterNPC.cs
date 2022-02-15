@@ -137,11 +137,8 @@ namespace GCA5FantasyGroundsExporterNPC
             ExportTraits(myCharacter, fileWriter);
 
             Exportattributes(myCharacter, fileWriter);
-            ExportEncumberance(myCharacter, fileWriter);
             ExportCombat(myCharacter, fileWriter);
-            
-            ExportInventory(myCharacter, fileWriter);
-            ExportPointTotals(myCharacter, fileWriter);
+ 
             fileWriter.Paragraph("</npc>");
             fileWriter.Paragraph("</root>");
         }
@@ -291,6 +288,165 @@ namespace GCA5FantasyGroundsExporterNPC
             fileWriter.Paragraph("<description type=\"string\">");
             fileWriter.Paragraph(SecurityElement.Escape(AdsnDisads));
             fileWriter.Paragraph("</description>");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void Exportattributes(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            fileWriter.Paragraph("<attributes>");
+
+            fileWriter.Paragraph(EscapedItem("strength", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Score.ToString()));            
+            fileWriter.Paragraph(EscapedItem("dexterity", "number", myCharacter.ItemByNameAndExt("DX", (int)TraitTypes.Stats).Score.ToString()));            
+            fileWriter.Paragraph(EscapedItem("intelligence", "number", myCharacter.ItemByNameAndExt("IQ", (int)TraitTypes.Stats).Score.ToString()));            
+            fileWriter.Paragraph(EscapedItem("health", "number", myCharacter.ItemByNameAndExt("HT", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("hitpoints", "number", myCharacter.ItemByNameAndExt("Hit Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("will", "number", myCharacter.ItemByNameAndExt("Will", (int)TraitTypes.Stats).Score.ToString()));            
+            fileWriter.Paragraph(EscapedItem("perception", "number", myCharacter.ItemByNameAndExt("Perception", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("fatiguepoints", "number", myCharacter.ItemByNameAndExt("Fatigue Points", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("basicspeed", "string", myCharacter.ItemByNameAndExt("Basic Speed", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("thrust", "string", myCharacter.BaseTH));
+            fileWriter.Paragraph(EscapedItem("swing", "string", myCharacter.BaseSW));                       
+            fileWriter.Paragraph("</attributes>");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void ExportCombat(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.ItemByNameAndExt("Block", (int)TraitTypes.Stats).Score.ToString()));
+
+            ExportMeleeList(myCharacter, fileWriter);
+            ExportRangedList(myCharacter, fileWriter);
+
+            fileWriter.Paragraph("</combat>");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void ExportMeleeList(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var attackIndex = 1;
+
+            fileWriter.Paragraph("<meleecombatlist>");
+
+            foreach (GCATrait Item in myCharacter.Items)
+            {
+                if (Item.DamageModeTagItemCount("charreach") > 0)
+                {
+                    var ModeCount = Item.DamageModeTagItemCount("charreach");
+
+                    if (!IsItemHidden(Item) && ModeCount > 0)
+                    {
+                        var curMode = 1;
+                        var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                        fileWriter.Paragraph(index);
+
+                        fileWriter.Paragraph(EscapedItem("name", "string", Item.Name));
+                        fileWriter.Paragraph(EscapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                        fileWriter.Paragraph(EscapedItem("cost", "string", Item.get_TagItem("cost")));
+                        fileWriter.Paragraph(EscapedItem("weight", "string", Item.get_TagItem("weight")));
+                        fileWriter.Paragraph(EscapedItem("text", "string", Item.get_TagItem("description")));
+                        fileWriter.Paragraph(EscapedItem("tl", "string", Item.get_TagItem("techlvl")));
+
+                        fileWriter.Paragraph("<meleemodelist>");
+
+                        do
+                        {
+
+                            var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                            fileWriter.Paragraph(indexMode);
+                            fileWriter.Paragraph(EscapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                            fileWriter.Paragraph(EscapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                            fileWriter.Paragraph(EscapedItem("damage", "string", GetDamageString(Item, curMode)));
+                            fileWriter.Paragraph(EscapedItem("reach", "string", Item.DamageModeTagItem(curMode, "charreach")));
+                            fileWriter.Paragraph(EscapedItem("parry", "string", Item.DamageModeTagItem(curMode, "parry")));
+                            fileWriter.Paragraph(indexMode.Insert(1, "/"));
+
+                            curMode = Item.DamageModeTagItemAt("charreach", curMode + 1);
+                        } while (curMode > 0);
+
+                        fileWriter.Paragraph("</meleemodelist>");
+                        fileWriter.Paragraph(index.Insert(1, "/"));
+                        attackIndex++;
+                    }
+
+
+                }
+            }
+
+            fileWriter.Paragraph("</meleecombatlist>");
+        }
+
+        /// <summary>
+        /// exports every ranged attackmode of the given cahracter
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void ExportRangedList(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var attackIndex = 1;
+
+            fileWriter.Paragraph("<rangedcombatlist>");
+
+            //As a lot of things can give you a ranged attack we have to iterate over all items
+            foreach (GCATrait Item in myCharacter.Items)
+            {
+                //Every ranged attack has at least one entry with a range
+                var ModeCount = Item.DamageModeTagItemCount("charrangemax");
+
+                if (!IsItemHidden(Item) && ModeCount > 0)
+                {
+                    var curMode = 1;
+                    var index = "<id-" + attackIndex.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                    fileWriter.Paragraph(index);
+                    fileWriter.Paragraph(EscapedItem("name", "string", Item.Name));
+                    fileWriter.Paragraph(EscapedItem("st", "string", Item.DamageModeTagItem(curMode, "charminst")));
+                    fileWriter.Paragraph(EscapedItem("bulk", "number", Item.DamageModeTagItem(curMode, "bulk")));
+                    fileWriter.Paragraph(EscapedItem("lc", "string", Item.DamageModeTagItem(curMode, "lc")));
+                    fileWriter.Paragraph(EscapedItem("text", "string", Item.get_TagItem("description")));
+                    fileWriter.Paragraph(EscapedItem("tl", "string", Item.get_TagItem("techlvl")));
+
+                    fileWriter.Paragraph("<rangedmodelist>");
+                    do
+                    {
+                        var indexMode = "<id-" + (curMode).ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+
+                        fileWriter.Paragraph(indexMode);
+                        fileWriter.Paragraph(EscapedItem("name", "string", Item.DamageModeTagItem(curMode, "name")));
+                        fileWriter.Paragraph(EscapedItem("level", "number", Item.DamageModeTagItem(curMode, "charskillscore")));
+                        fileWriter.Paragraph(EscapedItem("damage", "string", GetDamageString(Item, curMode)));
+                        fileWriter.Paragraph(EscapedItem("acc", "number", Item.DamageModeTagItem(curMode, "acc")));
+                        var range = Item.DamageModeTagItem(curMode, "charrangehalfdam") + "/" + Item.DamageModeTagItem(curMode, "charrangemax");
+                        fileWriter.Paragraph(EscapedItem("range", "string", range));
+                        fileWriter.Paragraph(EscapedItem("rof", "string", Item.DamageModeTagItem(curMode, "rof")));
+                        fileWriter.Paragraph(EscapedItem("shots", "string", Item.DamageModeTagItem(curMode, "shots")));
+                        fileWriter.Paragraph(EscapedItem("rcl", "number", Item.DamageModeTagItem(curMode, "rcl")));
+                        fileWriter.Paragraph(indexMode.Insert(1, "/"));
+
+                        curMode = Item.DamageModeTagItemAt("charrangemax", curMode + 1);
+                    } while (curMode > 0);
+                    fileWriter.Paragraph("</rangedmodelist>");
+                    fileWriter.Paragraph(index.Insert(1, "/"));
+                    attackIndex++;
+                }
+            }
+
+            fileWriter.Paragraph("</rangedcombatlist>");
         }
 
         private string EscapedItem(string tagName, string tagType, string item)
