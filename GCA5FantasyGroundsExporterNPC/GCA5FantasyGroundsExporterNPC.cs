@@ -18,21 +18,21 @@ using GCA5.Interfaces;
 
 namespace GCA5FantasyGroundsExporterNPC
 {
-    public class GCA5FantasyGroundsExporterNPC
+    public class GCA5FantasyGroundsExporterNPC : GCA5.Interfaces.IExportSheet
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.1.0.0";
+        private const string PLUGINVERSION = "1.0.0.1";
         private SheetOptionsManager myOptions;
 
         public string PluginName()
         {
-            return "Fantasy Grunds PC export";
+            return "Fantasy Grounds NPC export";
         }
 
         public string PluginDescription()
         {
-            return "Export Character as PC to Fantasy Grunds";
+            return "Export Character as NPC to Fantasy Grounds";
         }
 
         public string PluginVersion()
@@ -132,15 +132,29 @@ namespace GCA5FantasyGroundsExporterNPC
             //Name
             fileWriter.Paragraph(EscapedItem("name", "string", myCharacter.Name));
 
+            ExportNotes(myCharacter, fileWriter);
             ExportAbilities(myCharacter, fileWriter);
+            ExportTraits(myCharacter, fileWriter);
+
             Exportattributes(myCharacter, fileWriter);
             ExportEncumberance(myCharacter, fileWriter);
             ExportCombat(myCharacter, fileWriter);
-            ExportTraits(myCharacter, fileWriter);
+            
             ExportInventory(myCharacter, fileWriter);
             ExportPointTotals(myCharacter, fileWriter);
             fileWriter.Paragraph("</npc>");
             fileWriter.Paragraph("</root>");
+        }
+
+        private void ExportNotes(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            fileWriter.Paragraph("<notes> type=\"formattedtext\"");
+            fileWriter.Paragraph(EscapedItem("p", "string","Race: " + myCharacter.Race));
+            fileWriter.Paragraph(EscapedItem("p", "string", "height: " + myCharacter.Height));
+            fileWriter.Paragraph(EscapedItem("p", "string", "weight: " + myCharacter.Weight));
+            fileWriter.Paragraph(EscapedItem("p", "string", "age: " + myCharacter.Age));
+            fileWriter.Paragraph(EscapedItem("p", "string", "appearance: " + myCharacter.Appearance));
+            fileWriter.Paragraph("</notes>");
         }
 
         /// <summary>
@@ -169,12 +183,12 @@ namespace GCA5FantasyGroundsExporterNPC
             fileWriter.Paragraph("<abilitieslist>");
             foreach (GCATrait skill in mySkills)
             {
-                    var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
-                    fileWriter.Paragraph(index);
-                    fileWriter.Paragraph(EscapedItem("name", "string", skill.FullNameTL));
-                    fileWriter.Paragraph(EscapedItem("level", "number", skill.Level.ToString()));
-                    fileWriter.Paragraph(index.Insert(1, "/"));
-                    i++;
+                var index = "<id-" + i.ToString("D5", CultureInfo.CreateSpecificCulture("en-US")) + ">";
+                fileWriter.Paragraph(index);
+                fileWriter.Paragraph(EscapedItem("name", "string", skill.FullNameTL));
+                fileWriter.Paragraph(EscapedItem("level", "number", skill.Level.ToString()));
+                fileWriter.Paragraph(index.Insert(1, "/"));
+                i++;
             }
 
             foreach (GCATrait spell in mySpells)
@@ -201,7 +215,83 @@ namespace GCA5FantasyGroundsExporterNPC
             }
 
             fileWriter.Paragraph("</abilitieslist>");
+        }
+
+        private void ExportTraits(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var x = myCharacter.ItemsByName("Size Modifier", (int)TraitTypes.Attributes);
+            var sm = "0";
+            if (x.Count > 0)
+            {
+                GCATrait gCATrait = (GCATrait)x[1];
+                sm = gCATrait.Score.ToString();
             }
+
+            fileWriter.Paragraph("<traits>");
+            fileWriter.Paragraph(EscapedItem("sizemodifier", "string", sm));
+            ExportReactionMods(myCharacter, fileWriter);
+            ExportAdsnDisads(myCharacter, fileWriter);
+            fileWriter.Paragraph("</traits>");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myCharacter"></param>
+        /// <param name="fileWriter"></param>
+        private void ExportReactionMods(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            GCATrait reaction = myCharacter.ItemByNameAndExt("Reaction", (int)TraitTypes.Attributes);
+            string reactionmods = reaction.get_TagItem("bonuslist");
+            reactionmods = reactionmods + ", " + reaction.get_TagItem("conditionallist");
+
+            fileWriter.Paragraph(EscapedItem("reactionmodifiers", "string", reactionmods));
+        }
+
+        private void ExportAdsnDisads(GCACharacter myCharacter, FileWriter fileWriter)
+        {
+            var Templates = myCharacter.ItemsByType[(int)TraitTypes.Templates];
+            var Ads = myCharacter.ItemsByType[(int)TraitTypes.Advantages];
+            var Perks = myCharacter.ItemsByType[(int)TraitTypes.Perks];
+            var Features = myCharacter.ItemsByType[(int)TraitTypes.Features];
+            var Disads = myCharacter.ItemsByType[(int)TraitTypes.Disadvantages];
+            var Quirks = myCharacter.ItemsByType[(int)TraitTypes.Quirks];
+
+            string AdsnDisads = "";
+            foreach (GCATrait item in Templates)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            foreach (GCATrait item in Ads)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            foreach (GCATrait item in Perks)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            foreach (GCATrait item in Features)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            foreach (GCATrait item in Disads)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            foreach (GCATrait item in Quirks)
+            {
+                AdsnDisads = AdsnDisads + item.FullName + "\\r";
+            }
+
+            fileWriter.Paragraph("<description type=\"string\">");
+            fileWriter.Paragraph(SecurityElement.Escape(AdsnDisads));
+            fileWriter.Paragraph("</description>");
+        }
 
         private string EscapedItem(string tagName, string tagType, string item)
         {
@@ -228,3 +318,4 @@ namespace GCA5FantasyGroundsExporterNPC
             return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
         }
     }
+}
