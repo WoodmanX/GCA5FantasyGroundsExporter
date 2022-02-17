@@ -321,7 +321,7 @@ namespace GCA5FantasyGroundsExporterNPC
         private void ExportCombat(GCACharacter myCharacter, FileWriter fileWriter)
         {
             fileWriter.Paragraph("<combat>");
-            fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.OtherDR));
+            fileWriter.Paragraph(EscapedItem("dr", "string", getDR(myCharacter)));
             fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
             fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ParryScore.ToString()));
             fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.BlockScore.ToString()));
@@ -449,6 +449,23 @@ namespace GCA5FantasyGroundsExporterNPC
             fileWriter.Paragraph("</rangedcombatlist>");
         }
 
+
+        private string getDR(GCACharacter myCharacter)
+        {
+            var myDr = "0*";
+
+            foreach (string myname in myCharacter.Body.AllVisibleBodyPartNames())
+            {
+                if (myname == "Torso")
+                {
+                    BodyItem myBodyItem = myCharacter.Body.Item(myname);
+                    myDr = myBodyItem.DR;
+                }
+            }
+
+            return myDr;
+           
+        }
         private string EscapedItem(string tagName, string tagType, string item)
         {
             return "<" + tagName + " type=\"" + tagType + "\">" + SecurityElement.Escape(item) + "</" + tagName + ">";
