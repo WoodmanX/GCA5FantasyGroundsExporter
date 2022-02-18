@@ -347,8 +347,8 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph(EscapedItem("enc4_dodge", "number", (noEncDodge - 4).ToString("D")));
 
             fileWriter.Paragraph(EscapedItem("dodge", "number", myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ItemByNameAndExt("Parry", (int)TraitTypes.Stats).Score.ToString()));
-            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.ItemByNameAndExt("Block", (int)TraitTypes.Stats).Score.ToString()));
+            fileWriter.Paragraph(EscapedItem("parry", "number", myCharacter.ParryScore.ToString()));
+            fileWriter.Paragraph(EscapedItem("block", "number", myCharacter.BlockScore.ToString()));
             fileWriter.Paragraph(EscapedItem("dr", "string", myCharacter.ItemByNameAndExt("DR", (int)TraitTypes.Stats).Score.ToString()));
 
             fileWriter.Paragraph("<protectionlist>");
@@ -733,8 +733,8 @@ namespace GCA5FantasyGroundsExporter
                 fileWriter.Paragraph(EscapedItem("isidentified", "number", "1"));
                 fileWriter.Paragraph(EscapedItem("name", "string", Item.DisplayName));
                 fileWriter.Paragraph(EscapedItem("count", "number", Item.get_TagItem("count")));
-                fileWriter.Paragraph(EscapedItem("cost", "string", Item.get_TagItem("cost")));
-                fileWriter.Paragraph(EscapedItem("weight", "number", Item.get_TagItem("weight") + Item.get_TagItem("charunits")));
+                fileWriter.Paragraph(EscapedItem("cost", "string", Item.get_TagItem("basecost")));
+                fileWriter.Paragraph(EscapedItem("weight", "number", Item.get_TagItem("baseweight")));
                 fileWriter.Paragraph(EscapedItem("location", "string", Item.get_TagItem("charlocation")));
                 fileWriter.Paragraph(EscapedItem("notes", "formattedtext", Item.get_TagItem("description")));
                 fileWriter.Paragraph(index.Insert(1, "/"));
