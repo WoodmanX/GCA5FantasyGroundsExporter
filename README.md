@@ -3,6 +3,7 @@ This is a plugin for GURPS Character Assistant (GCA) wich can be bought at http:
 It exports characters for use in the VTT Fantasy Grounds.
 
 *Installation*
+
 Normaly the Plugins should be available via GCAs package Manager.
 If you want to try testing versions 
 1. create a folder named "GCA5FantasyGroundsExporter" and "GCA5FantasyGroundsNPCExporter" in C:\ProgramData\Steve Jackson Games\GURPS Character Assistant 5\plugins
