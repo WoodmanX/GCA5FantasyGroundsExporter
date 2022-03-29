@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="gca5plugin">
+	<author>
+
+	</author>
+
+	<language>c#</language>
+	<output>GCA5FantasyGroundsExporter.dll</output>
+		
+	<source>GCA5FantasyGroundsExporter.cs</source>
+	<source>AssemblyInfo.cs</source>
+
+	<reference>System.dll</reference>
+	<reference>System.Core.dll</reference>
+	<reference>System.Drawing.dll</reference>
+	<reference>System.Xml.dll</reference>
+	<reference>System.Xml.Linq.dll</reference>
+	<reference>System.Collections.dll</reference>
+
+	<reference>Microsoft.VisualBasic.dll</reference>
+
+	<reference>%app%\GCA5Engine.dll</reference>
+	<reference>%app%\GCA5.Interfaces.dll</reference>
+
+</plugin>
