@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <Product />
     <AssemblyVersion>1.0.0.3</AssemblyVersion>
     <Authors>WoodmanX</Authors>
@@ -22,6 +22,7 @@
     <Reference Include="GCA5Engine">
       <HintPath>..\assemblies\GCA5Engine.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
   </ItemGroup>
 
 </Project>
