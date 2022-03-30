@@ -297,8 +297,16 @@ namespace GCA5FantasyGroundsExporter
 
             var noEncDodge = (int)myCharacter.ItemByNameAndExt("Dodge", (int)TraitTypes.Stats).Score;
 
-            int[] myEnc = {0,0,0,0,0};
-            myEnc[curEnc] = 1;
+            int[] myEnc = {0,0,0,0,0,5};
+            if(curEnc <= 4)
+            {
+                myEnc[curEnc] = 1;
+            }
+            else
+            {
+                myEnc[5] = 1;
+            }
+            
 
             
 

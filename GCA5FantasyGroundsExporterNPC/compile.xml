@@ -5,9 +5,9 @@
 	</author>
 
 	<language>c#</language>
-	<output>GCA5FantasyGroundsNPCExporter.dll</output>
+	<output>GCA5FantasyGroundsExporterNPC.dll</output>
 		
-	<source>GCA5FantasyGroundsNPCExporter.cs</source>
+	<source>GCA5FantasyGroundsExporterNPC.cs</source>
 	<source>AssemblyInfo.cs</source>
 
 	<reference>System.dll</reference>
