@@ -25,7 +25,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.1.0.0";
+        private const string PLUGINVERSION = "1.3.0.0";
         private SheetOptionsManager myOptions;
 
         public string PluginName()
@@ -35,7 +35,7 @@ namespace GCA5FantasyGroundsExporter
 
         public string PluginDescription()
         {
-            return "Export Character as PC to Fantasy Grounds";
+            return "Export Character as PC to Fantasy Grounds for more information see https://github.com/WoodmanX/GCA5FantasyGroundsExporter";
         }
 
         public string PluginVersion()
