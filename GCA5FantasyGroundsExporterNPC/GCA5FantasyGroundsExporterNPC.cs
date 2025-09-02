@@ -22,7 +22,7 @@ namespace GCA5FantasyGroundsExporterNPC
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.1.0.0";
+        private const string PLUGINVERSION = "1.2.0.0";
         private SheetOptionsManager myOptions;
 
         public string PluginName()
@@ -493,7 +493,8 @@ namespace GCA5FantasyGroundsExporterNPC
         /// <returns></returns>
         private string GetDamageString(GCATrait item, int mode)
         {
-            return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+            //return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+            return item.DamageModeTagItem(mode, "DamageDisplayText");
         }
     }
 }
