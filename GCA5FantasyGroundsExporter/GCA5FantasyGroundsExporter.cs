@@ -25,7 +25,7 @@ namespace GCA5FantasyGroundsExporter
     {
         public event IExportSheet.RequestRunSpecificOptionsEventHandler RequestRunSpecificOptions;
 
-        private const string PLUGINVERSION = "1.3.0.0";
+        private const string PLUGINVERSION = "1.4.0.0";
         private SheetOptionsManager myOptions;
 
         public string PluginName()
@@ -522,7 +522,7 @@ namespace GCA5FantasyGroundsExporter
             fileWriter.Paragraph(EscapedItem("sizemodifier", "string", sm));
             fileWriter.Paragraph(EscapedItem("reach", "string", sm));
             fileWriter.Paragraph(EscapedItem("tl", "string", myCharacter.TL));
-            fileWriter.Paragraph(EscapedItem("tl_points", "number", myCharacter.ItemByNameAndExt("ST", (int)TraitTypes.Stats).Points.ToString()));
+            fileWriter.Paragraph(EscapedItem("tl_points", "number", myCharacter.ItemByNameAndExt("Tech Level", (int)TraitTypes.Stats).Points.ToString()));
 
             //Advantages
             ExportAdvantages(myCharacter, fileWriter);
@@ -797,7 +797,8 @@ namespace GCA5FantasyGroundsExporter
         /// <returns></returns>
         private string GetDamageString(GCATrait item, int mode)
         {
-            return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+            //return item.DamageModeTagItem(mode, "chardamage") + " " + item.DamageModeTagItem(mode, "chardamtype");
+            return item.DamageModeTagItem(mode, "DamageDisplayText");
         }
 
         private string GetAdvantageName(GCATrait item)
